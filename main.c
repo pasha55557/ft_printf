@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rsticks <rsticks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/29 15:57:15 by rsticks           #+#    #+#             */
-/*   Updated: 2019/10/29 17:53:57 by rsticks          ###   ########.fr       */
+/*   Created: 2019/10/29 18:56:00 by rsticks           #+#    #+#             */
+/*   Updated: 2019/10/29 19:31:50 by rsticks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include <stdio.h>
+#include "includes/ft_printf.h"
 
-int	ft_printf(const char *format, ...)
+int	main()
 {
-	char	arg;
+	int i;
+	char c;
 
-	while (format)
-	{
-		if (*format == '%')
-			arg = *format + 1;
-		format++;
-	}
-	return (0);
+	c = 'f';
+	i = 6;
+	printf("%d", i);
+	ft_printf("%");
+	return(0);
 }

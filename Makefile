@@ -6,7 +6,7 @@
 #    By: rsticks <rsticks@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/29 15:59:04 by rsticks           #+#    #+#              #
-#    Updated: 2019/10/29 17:28:22 by rsticks          ###   ########.fr        #
+#    Updated: 2019/10/29 19:06:33 by rsticks          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,6 @@ $(NAME): $(OBJECTS) $(LIB_OBJECTS) $(HEADERS)
 	@echo "$(COLOR_SUCCESS)FINISHED$(COLOR_RESET)"
 
 $(OBJECTS_PATH)%.o: $(SRCS_PATH)%.c
-	@mkdir $(OBJECTS_PATH)
 	@$(COMPILE) $(INCLUDES) -c $< -o $@
 
 $(LIB_OBJECTS_PATH)%.o: $(LIB_SRCS_PATH)%.c
@@ -59,11 +58,15 @@ $(LIB_OBJECTS_PATH)%.o: $(LIB_SRCS_PATH)%.c
 clean:
 	@echo "$(COLOR_RENDERING)Cleaning...$(COLOR_RESET)"
 	@rm -f $(OBJECTS)
-	@rm -rf $(OBJECTS_PATH)
+	@rm -f $(LIB_OBJECTS)
 	@echo "\033[A\033[K\033[A"
 	@echo "$(COLOR_SUCCESS)OK$(COLOR_RESET)"
 
 fclean: clean
 	@rm -f $(NAME)
-
+	@rm -f a.out
 re: fclean all
+
+main: all
+	@$(COMPILE) -g main.c $(NAME)
+	@echo "$(COLOR_SUCCESS)OK$(COLOR_RESET)"

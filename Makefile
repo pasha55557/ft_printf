@@ -13,7 +13,7 @@
 NAME = libftprintf.a
 
 SRCS_PATH = ./src/
-SRCS_FILES = ft_printf.c
+SRCS_FILES = ft_printf.c main.c
 SRCS = $(addprefix $(SRCS_PATH), $(SRCS_FILES))
 
 LIB_SRCS_PATH = ./libft/
@@ -64,9 +64,10 @@ clean:
 
 fclean: clean
 	@rm -f $(NAME)
-	@rm -f a.out
+	@rm -f ft_printf
 re: fclean all
 
 main: all
-	@$(COMPILE) -g main.c $(NAME)
+
+	@$(COMPILE) -g -o ft_printf $(OBJECTS)
 	@echo "$(COLOR_SUCCESS)OK$(COLOR_RESET)"

@@ -6,7 +6,7 @@
 /*   By: rsticks <rsticks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 15:57:15 by rsticks           #+#    #+#             */
-/*   Updated: 2019/10/29 17:53:57 by rsticks          ###   ########.fr       */
+/*   Updated: 2019/10/31 12:52:38 by rsticks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,9 @@ int	ft_printf(const char *format, ...)
 
 	while (format)
 	{
-		if (*format == '%')
-			arg = *format + 1;
+		//if (*format == '%')
+		//	arg = *(format + 1);
+		printf("%c", *format);
 		format++;
 	}
 	return (0);

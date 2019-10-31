@@ -9,13 +9,13 @@
 			"name": "(lldb) Launch",
 			"type": "cppdbg",
 			"request": "launch",
-			"program": "/Users/rsticks/Desktop/42/ft_printf/a.out",
+			"program": "/Users/rsticks/Desktop/42/ft_printf/ft_printf",
 			"args": [],
 			"stopAtEntry": false,
 			"cwd": "${workspaceFolder}",
 			"environment": [],
 			"externalConsole": false,
 			"MIMode": "lldb"
-		}
+		},
 	]
 }

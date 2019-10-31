@@ -50,7 +50,7 @@ $(NAME): $(OBJECTS) $(LIB_OBJECTS) $(HEADERS)
 	@echo "$(COLOR_SUCCESS)FINISHED$(COLOR_RESET)"
 
 $(OBJECTS_PATH)%.o: $(SRCS_PATH)%.c
-	@$(COMPILE) $(INCLUDES) -c $< -o $@
+	@$(COMPILE) $(INCLUDES) -g -c $< -o $@
 
 $(LIB_OBJECTS_PATH)%.o: $(LIB_SRCS_PATH)%.c
 	@$(COMPILE) $(INCLUDES) -c $< -o $@
@@ -69,5 +69,5 @@ re: fclean all
 
 main: all
 
-	@$(COMPILE) -g -o ft_printf $(OBJECTS)
+	$(COMPILE) -o ft_printf $(OBJECTS)
 	@echo "$(COLOR_SUCCESS)OK$(COLOR_RESET)"

@@ -12,16 +12,64 @@
 
 #include "../includes/ft_printf.h"
 
-int	ft_printf(const char *format, ...)
+int		countdigits(int n)
 {
-	char	arg;
+	int i;
 
-	while (format)
+	i = 0;
+	while (n)
 	{
-		//if (*format == '%')
-		//	arg = *(format + 1);
-		printf("%c", *format);
+		n = n / 10;
+		i++;
+	}
+	return (i);
+}
+
+int		parser(va_list arg, const char *format)
+{
+	int	d;
+	char c;
+	int count;
+
+	count = 0;
+	while (*format != '\0')
+	{
+		if (*format == '%')
+		{
+			format++;
+			if (*format == 'd')
+			{
+				d = va_arg(arg, int);
+				ft_putnbr(d);
+				count += countdigits(d);
+			}
+			else if (*format == 'c')
+			{
+				c = (char)va_arg(arg, int);
+				ft_putchar(c);
+				count += 1;
+			}
+			else
+			{
+				ft_putchar(*format);
+				count += 1;
+			}
+		}
+		else
+		{
+			ft_putchar(*format);
+			count += 1;
+		}
 		format++;
 	}
-	return (0);
+	va_end(arg);
+	return(count);
+}
+
+int	ft_printf(const char *format, ...)
+{
+	va_list arg;
+
+	va_start(arg, format);
+	return(parser(arg, format));
 }

@@ -20,7 +20,10 @@ int	main()
 
 	c = 'f';
 	i = 6;
-	printf("%d", i);
-	ft_printf("%d");
+	//printf("orig printf: ");
+	printf("%%\n");
+	
+	//printf("ft_printf: ");
+	ft_printf("%%\n");
 	return(0);
 }

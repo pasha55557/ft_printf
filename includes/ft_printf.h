@@ -14,5 +14,16 @@
 #include "../libft/libft.h"
 #include <stdarg.h>
 
-int		ft_printf(const char *format, ...);
-int		parser(va_list arg, const char *format);
+typedef	struct	s_printf
+{
+	va_list		arg;
+	int			d;
+	char		c;
+	int			count;
+	int			space;
+	const char	*format;
+}				t_printf;
+
+
+int				ft_printf(const char *format, ...);
+void			parser(t_printf *prnt, const char *format);

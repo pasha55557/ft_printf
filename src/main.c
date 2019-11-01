@@ -15,15 +15,18 @@
 
 int	main()
 {
-	int i;
+	int ft_i;
 	char c;
+	int j;
+	int test;
 
+	test = 45;
 	c = 'f';
-	i = 6;
-	//printf("orig printf: ");
-	printf("%%\n");
-	
-	//printf("ft_printf: ");
-	ft_printf("%%\n");
+	ft_i = 0;
+	j = 0;
+	ft_i = printf("%12k\n");
+	j = ft_printf("%12k\n");
+	printf("\ncount printf     (%d)\n", ft_i);
+	printf("count ft_printf  (%d)\n", j);
 	return(0);
 }

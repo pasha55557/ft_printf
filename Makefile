@@ -17,7 +17,7 @@ SRCS_FILES = ft_printf.c main.c
 SRCS = $(addprefix $(SRCS_PATH), $(SRCS_FILES))
 
 LIB_SRCS_PATH = ./libft/
-LIB_SRCS_FILES = ft_strcmp.c ft_putchar.c ft_putnbr.c ft_putchar_fd.c
+LIB_SRCS_FILES = ft_strcmp.c ft_putchar.c ft_putnbr.c ft_putchar_fd.c ft_atoi.c
 LIB_SRCS = $(addprefix $(LIB_SRCS_PATH), $(LIB_SRCS_FILES))
 
 LIB_OBJECTS_PATH = ./objs/

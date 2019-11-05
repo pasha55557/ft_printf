@@ -24,9 +24,9 @@ int	main()
 	c = 'f';
 	ft_i = 0;
 	j = 0;
-	ft_i = printf("%12k\n");
-	j = ft_printf("%12k\n");
+	ft_i = printf("%.0d", test);
+	//j = ft_printf("%-5k");
 	printf("\ncount printf     (%d)\n", ft_i);
-	printf("count ft_printf  (%d)\n", j);
+	//printf("count ft_printf  (%d)\n", j);
 	return(0);
 }

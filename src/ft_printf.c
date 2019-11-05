@@ -17,6 +17,9 @@ int		countdigits(int n)
 	int i;
 
 	i = 0;
+	if (n < 0)
+		i++;
+	
 	while (n)
 	{
 		n = n / 10;
@@ -31,47 +34,121 @@ void		putchar_and_count(t_printf *prnt, char c)
 	prnt->count++;
 }
 
-const char		*if_pocent(t_printf *prnt, const char *format)
+const char		*if_procent(t_printf *prnt, const char *format)
 {
+	int			temp;
+
+	temp = 0;
+
+	if (format[1] == '\0')
+		return(format);
 	format++;
+	while (*format == ' ')
+		format++;
+	
+	/*
+	FOR WIDTH
+	*/
+
+	if ((*format >= '0' && *format <= '9') || *format == '-')
+	{
+		prnt->width = ft_atoi(format);
+		format += countdigits(prnt->width);
+	}
+	
+	/*
+	FOR INT
+	*/
+
 	if (*format == 'd')
 	{
 		prnt->d = va_arg(prnt->arg, int);
+		temp = countdigits(prnt->d);
+		if (prnt->width > 0)
+		{
+			prnt->width -= temp;
+			while (prnt->width != 0)
+			{
+				putchar_and_count(prnt, ' ');
+				prnt->width--;
+			}
+		}
 		ft_putnbr(prnt->d);
-		prnt->count += countdigits(prnt->d);
+		if (prnt->width < 0)
+		{
+			prnt->width += temp;
+			while (prnt->width != 0)
+			{
+				putchar_and_count(prnt, ' ');
+				prnt->width++;
+			}
+		}
+		prnt->count += temp;
 	}
+
+	/*
+	FOR CHAR
+	*/
+
 	else if (*format == 'c')
 	{
 		prnt->c = (char)va_arg(prnt->arg, int);
-		putchar_and_count(prnt, prnt->c);
-	}
-	else if (*format >= '0' && *format <= '9')
-	{
-		prnt->space = ft_atoi(format) - 1;
-		format += countdigits(prnt->space) - 1;
-		while (prnt->space != 0)
+		if (prnt->width > 0)
 		{
-			putchar_and_count(prnt, ' ');
-			prnt->space--;
+			prnt->width--;
+			while (prnt->width != 0)
+			{
+				putchar_and_count(prnt, ' ');
+				prnt->width--;
+			}
+		}
+		putchar_and_count(prnt, prnt->c);
+		if (prnt->width < 0)
+		{
+			prnt->width++;
+			while (prnt->width != 0)
+			{
+				putchar_and_count(prnt, ' ');
+				prnt->width++;
+			}
 		}
 	}
-	else
+
+	else if (*format != '\0')
 	{
+		if (prnt->width > 0)
+		{
+			prnt->width--;
+			while (prnt->width != 0)
+			{
+				putchar_and_count(prnt, ' ');
+				prnt->width--;
+			}
+		}
 		putchar_and_count(prnt, *format);
+		if (prnt->width < 0)
+		{
+			prnt->width++;
+			while (prnt->width != 0)
+			{
+				putchar_and_count(prnt, ' ');
+				prnt->width++;
+			}
+		}
 	}
 	return(format);
 }
 
-
 void		parser(t_printf *prnt, const char *format)
 {
 	prnt->count = 0;
+	prnt->width = 0;
 
 	while (*format != '\0')
 	{
 		if (*format == '%')
 		{
-			format = if_pocent(prnt, format);
+			format = if_procent(prnt, format);
 		}
 		else
 		{

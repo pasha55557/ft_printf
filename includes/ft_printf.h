@@ -16,12 +16,11 @@
 
 typedef	struct	s_printf
 {
-	va_list		arg;
-	int			d;
-	char		c;
-	int			count;
-	int			space;
-	const char	*format;
+	va_list			arg;
+	int				d;
+	char			c;
+	int				count;
+	int				width;
 }				t_printf;
 
 

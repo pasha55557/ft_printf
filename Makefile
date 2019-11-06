@@ -6,14 +6,14 @@
 #    By: rsticks <rsticks@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/29 15:59:04 by rsticks           #+#    #+#              #
-#    Updated: 2019/10/29 19:06:33 by rsticks          ###   ########.fr        #
+#    Updated: 2019/11/06 15:55:43 by rsticks          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 
 SRCS_PATH = ./src/
-SRCS_FILES = ft_printf.c main.c
+SRCS_FILES = ft_printf.c main.c parser.c
 SRCS = $(addprefix $(SRCS_PATH), $(SRCS_FILES))
 
 LIB_SRCS_PATH = ./libft/

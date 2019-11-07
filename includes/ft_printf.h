@@ -6,7 +6,7 @@
 /*   By: rsticks <rsticks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 14:59:55 by rsticks           #+#    #+#             */
-/*   Updated: 2019/11/06 18:24:14 by rsticks          ###   ########.fr       */
+/*   Updated: 2019/11/07 20:27:07 by rsticks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@
 # define FORM_N (1 << 25)
 
 # define FORM_TRUE (1 << 26)
+# define MOD_TRUE (1 << 27)
 
 typedef struct		s_flags
 {
@@ -68,16 +69,17 @@ typedef	struct		s_printf
 	char			*buff;
 }					t_printf;
 
+int					mods(t_printf *prnt);
 void				form(t_printf *prnt);
 int					ft_printf(const char *format, ...);
 int					ft_atoi_nb(const char *str, int *nb);
 void				parser(t_printf *prnt);
 int					countdigits(int n);
-void				accuracy(t_printf *prnt);
-void				flags(t_printf *prnt);
-void				width(t_printf *prnt);
+int					accuracy(t_printf *prnt);
+int					flags(t_printf *prnt);
+int					width(t_printf *prnt);
 void				putchar_and_count(t_printf *prnt, char c);
-void				*if_procent(t_printf *prnt);
+void				if_procent(t_printf *prnt);
 void				parser(t_printf *prnt);
 
 #endif

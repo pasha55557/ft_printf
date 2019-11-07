@@ -6,7 +6,7 @@
 /*   By: rsticks <rsticks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 18:42:14 by rsticks           #+#    #+#             */
-/*   Updated: 2019/11/06 18:24:14 by rsticks          ###   ########.fr       */
+/*   Updated: 2019/11/07 20:37:13 by rsticks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,41 +17,40 @@ void					form(t_printf *prnt)
 	if (*prnt->format == 'd' || *prnt->format == 'i')
 		prnt->flags |= FORM_D_I;
 	if (*prnt->format == 'u')
-		prnt->flags == FORM_U;
+		prnt->flags |= FORM_U;
 	if (*prnt->format == 'X')
-		prnt->flags == FORM_X;
+		prnt->flags |= FORM_X;
 	if (*prnt->format == 'x')
-		prnt->flags == FORM_x;
+		prnt->flags |= FORM_x;
 	if (*prnt->format == 'F' || *prnt->format == 'f')
-		prnt->flags == FORM_F;
+		prnt->flags |= FORM_F;
 	if (*prnt->format == 'E')
-		prnt->flags == FORM_E;
+		prnt->flags |= FORM_E;
 	if (*prnt->format == 'e')
-		prnt->flags == FORM_e;
+		prnt->flags |= FORM_e;
 	if (*prnt->format == 'g' || *prnt->format == 'G')
-		prnt->flags == FORM_G;
+		prnt->flags |= FORM_G;
 	if (*prnt->format == 'a')
-		prnt->flags == FORM_a;
+		prnt->flags |= FORM_a;
 	if (*prnt->format == 'A')
-		prnt->flags == FORM_A;
+		prnt->flags |= FORM_A;
 	if (*prnt->format == 'c')
-		prnt->flags == FORM_C;
+		prnt->flags |= FORM_C;
 	if (*prnt->format == 's')
-		prnt->flags == FORM_s;
+		prnt->flags |= FORM_s;
 	if (*prnt->format == 'S')
-		prnt->flags == FORM_S;
+		prnt->flags |= FORM_S;
 	if (*prnt->format == 'p')
-		prnt->flags == FORM_P;
+		prnt->flags |= FORM_P;
 	if (*prnt->format == 'n')
-		prnt->flags == FORM_N;
+		prnt->flags |= FORM_N;
 }
 
-void					mods(t_printf *prnt)
+int						mods(t_printf *prnt)
 {
 	if (*prnt->format == 'h')
 	{
-		prnt->format++;
-		if (*prnt->format == 'h')
+		if (prnt->format[1] == 'h')
 		{
 			prnt->flags |=  MOD_HH;
 		}
@@ -59,11 +58,12 @@ void					mods(t_printf *prnt)
 		{
 			prnt->flags |= 	MOD_H;
 		}
+		prnt->flags |= MOD_TRUE;
+		return(1);
 	}
 	if (*prnt->format == 'l')
 	{
-		prnt->format++;
-		if (*prnt->format == 'l')
+		if (prnt->format[1] == 'l')
 		{
 			prnt->flags |=  MOD_LL;
 		}
@@ -71,9 +71,16 @@ void					mods(t_printf *prnt)
 		{
 			prnt->flags |= 	MOD_L;
 		}
+		prnt->flags |= MOD_TRUE;
+		return(1);
 	}
 	if (*prnt->format == 'L')
+	{
 		prnt->flags |= 	MOD_LLL;	
+		prnt->flags |= MOD_TRUE;
+		return(1);
+	}
+	return(0);
 }
 
 int						countdigits(int n)
@@ -92,34 +99,52 @@ int						countdigits(int n)
 	return (i);
 }
 
-void					accuracy(t_printf *prnt)
+int						accuracy(t_printf *prnt)
 {
 	int tmp;
 
 	tmp = 0;
 	if (*prnt->format == '.')
 	{
-		prnt->format++;
-		prnt->accuracy = ft_atoi_nb(prnt->format, &tmp);
-		prnt->format += tmp;
+		prnt->accuracy = ft_atoi_nb(prnt->format[1], &tmp);
+		prnt->format += tmp - 1;
+		return(1);
 	}
+	else
+		return(0);
 }
 
-void					flags(t_printf *prnt)
+int						flags(t_printf *prnt)
 {
 	if (*prnt->format == '-')
+	{
 		prnt->flags |= FLAG_MINUS;
+		return(1);
+	}
 	if (*prnt->format == ' ')
+	{
 		prnt->flags |= FLAG_SPACE;
+		return(1);
+	}
 	if (*prnt->format == '+')
+	{
 		prnt->flags |= FLAG_PLUS;
+		return(1);
+	}
 	if (*prnt->format == '#')
+	{
 		prnt->flags |= FLAG_SHARP;
+		return(1);
+	}
 	if (*prnt->format == '0')
+	{
 		prnt->flags |= FLAG_NULL;
+		return(1);
+	}
+	return (0);
 }
 
-void					width(t_printf *prnt)
+int						width(t_printf *prnt)
 {
 	int tmp;
 
@@ -127,8 +152,11 @@ void					width(t_printf *prnt)
 	if (*prnt->format >= '0' && *prnt->format <= '9')
 	{
 		prnt->width = ft_atoi_nb(prnt->format, &tmp);
-		prnt->format += tmp;
+		prnt->format += tmp - 1;
+		return (1);
 	}
+	else
+		return (0);
 }
 
 
@@ -167,20 +195,36 @@ int						ft_atoi_nb(const char *str, int *nb)
 	return (0);
 }
 
-void		*if_procent(t_printf *prnt)
+void		if_procent(t_printf *prnt)
 {
 	int			temp;
 
 	temp = 0;
 	
-	
-	while (*prnt->format != '\0' || *prnt->format != '%')
+	while (*prnt->format != '\0' && *prnt->format != '%')
 	{
-		flags(prnt);
-		width(prnt);
-		accuracy(prnt);
-		mods(prnt);
-		if (!(FORM_TRUE == prnt->flags & FORM_TRUE))
+		if (flags(prnt))
+		{
+			prnt->format++;
+			continue;
+		}
+		if (width(prnt))
+		{
+			prnt->format++;
+			continue;
+		}
+		if (accuracy(prnt))
+		{
+			prnt->format++;
+			continue;
+		}
+		if (!(MOD_TRUE == (prnt->flags & MOD_TRUE)))
+			if (mods(prnt))
+				{
+					prnt->format++;
+					continue;
+				}
+		if (!(FORM_TRUE == (prnt->flags & FORM_TRUE)))
 			form(prnt);
 		if (*prnt->format != '\0' && *prnt->format != '%')
 			prnt->format++;

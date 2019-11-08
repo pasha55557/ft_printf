@@ -6,7 +6,7 @@
 /*   By: rsticks <rsticks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 15:57:15 by rsticks           #+#    #+#             */
-/*   Updated: 2019/11/06 16:54:21 by rsticks          ###   ########.fr       */
+/*   Updated: 2019/11/08 15:49:53 by rsticks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ void		parser(t_printf *prnt)
 	{
 		if (*prnt->format == '%')
 		{
-			prnt->format = if_procent(prnt);
+			prnt->format++;
+			if_procent(prnt);
 		}
 		else
 		{

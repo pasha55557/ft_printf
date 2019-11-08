@@ -6,7 +6,7 @@
 /*   By: rsticks <rsticks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 18:56:00 by rsticks           #+#    #+#             */
-/*   Updated: 2019/11/06 17:23:00 by rsticks          ###   ########.fr       */
+/*   Updated: 2019/11/08 15:46:54 by rsticks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	main()
 	j = 0;
 	ft_i = printf("%d5", test);
 	//printf("%e",);
-	//j = ft_printf("%-5k");
+	j = ft_printf("%55d");
 	printf("\ncount printf     (%d)\n", ft_i);
 	//printf("count ft_printf  (%d)\n", j);
 	return(0);

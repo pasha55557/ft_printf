@@ -6,7 +6,7 @@
 /*   By: rsticks <rsticks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 18:42:14 by rsticks           #+#    #+#             */
-/*   Updated: 2019/11/07 20:37:13 by rsticks          ###   ########.fr       */
+/*   Updated: 2019/11/08 16:30:24 by rsticks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void					form(t_printf *prnt)
 		prnt->flags |= FORM_N;
 }
 
-int						mods(t_printf *prnt)
+int					mods(t_printf *prnt)
 {
 	if (*prnt->format == 'h')
 	{
@@ -58,7 +58,6 @@ int						mods(t_printf *prnt)
 		{
 			prnt->flags |= 	MOD_H;
 		}
-		prnt->flags |= MOD_TRUE;
 		return(1);
 	}
 	if (*prnt->format == 'l')
@@ -71,13 +70,11 @@ int						mods(t_printf *prnt)
 		{
 			prnt->flags |= 	MOD_L;
 		}
-		prnt->flags |= MOD_TRUE;
 		return(1);
 	}
 	if (*prnt->format == 'L')
 	{
 		prnt->flags |= 	MOD_LLL;	
-		prnt->flags |= MOD_TRUE;
 		return(1);
 	}
 	return(0);
@@ -99,22 +96,22 @@ int						countdigits(int n)
 	return (i);
 }
 
-int						accuracy(t_printf *prnt)
+int					accuracy(t_printf *prnt)
 {
 	int tmp;
 
 	tmp = 0;
 	if (*prnt->format == '.')
 	{
-		prnt->accuracy = ft_atoi_nb(prnt->format[1], &tmp);
-		prnt->format += tmp - 1;
+		prnt->format++;
+		prnt->accuracy = ft_atoi_nb(prnt->format, &tmp);
+		prnt->format += tmp;
 		return(1);
 	}
-	else
-		return(0);
+	return(0);
 }
 
-int						flags(t_printf *prnt)
+int					flags(t_printf *prnt)
 {
 	if (*prnt->format == '-')
 	{
@@ -141,10 +138,10 @@ int						flags(t_printf *prnt)
 		prnt->flags |= FLAG_NULL;
 		return(1);
 	}
-	return (0);
+	return(0);
 }
 
-int						width(t_printf *prnt)
+int					width(t_printf *prnt)
 {
 	int tmp;
 
@@ -152,11 +149,10 @@ int						width(t_printf *prnt)
 	if (*prnt->format >= '0' && *prnt->format <= '9')
 	{
 		prnt->width = ft_atoi_nb(prnt->format, &tmp);
-		prnt->format += tmp - 1;
-		return (1);
+		prnt->format += tmp;
+		return(1);
 	}
-	else
-		return (0);
+	return(0);
 }
 
 
@@ -201,6 +197,7 @@ void		if_procent(t_printf *prnt)
 
 	temp = 0;
 	
+	
 	while (*prnt->format != '\0' && *prnt->format != '%')
 	{
 		if (flags(prnt))
@@ -210,20 +207,18 @@ void		if_procent(t_printf *prnt)
 		}
 		if (width(prnt))
 		{
-			prnt->format++;
 			continue;
 		}
 		if (accuracy(prnt))
 		{
-			prnt->format++;
 			continue;
 		}
-		if (!(MOD_TRUE == (prnt->flags & MOD_TRUE)))
+		if (!(MODS_TRUE == (prnt->flags & FORM_TRUE)))
 			if (mods(prnt))
-				{
-					prnt->format++;
-					continue;
-				}
+			{
+				prnt->format++;
+				continue;
+			}
 		if (!(FORM_TRUE == (prnt->flags & FORM_TRUE)))
 			form(prnt);
 		if (*prnt->format != '\0' && *prnt->format != '%')

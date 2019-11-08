@@ -6,7 +6,7 @@
 /*   By: rsticks <rsticks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 18:42:14 by rsticks           #+#    #+#             */
-/*   Updated: 2019/11/08 16:30:24 by rsticks          ###   ########.fr       */
+/*   Updated: 2019/11/08 19:01:21 by rsticks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 
 void					form(t_printf *prnt)
 {
+	uint32_t tmp;
+
+	tmp = prnt->flags;
 	if (*prnt->format == 'd' || *prnt->format == 'i')
 		prnt->flags |= FORM_D_I;
 	if (*prnt->format == 'u')
@@ -44,6 +47,8 @@ void					form(t_printf *prnt)
 		prnt->flags |= FORM_P;
 	if (*prnt->format == 'n')
 		prnt->flags |= FORM_N;
+	if (tmp != prnt->flags)
+		prnt->flags |= FORM_TRUE;
 }
 
 int					mods(t_printf *prnt)
@@ -58,6 +63,7 @@ int					mods(t_printf *prnt)
 		{
 			prnt->flags |= 	MOD_H;
 		}
+		prnt->flags |= MODS_TRUE;
 		return(1);
 	}
 	if (*prnt->format == 'l')
@@ -70,11 +76,13 @@ int					mods(t_printf *prnt)
 		{
 			prnt->flags |= 	MOD_L;
 		}
+		prnt->flags |= MODS_TRUE;
 		return(1);
 	}
 	if (*prnt->format == 'L')
 	{
-		prnt->flags |= 	MOD_LLL;	
+		prnt->flags |= 	MOD_LLL;
+		prnt->flags |= MODS_TRUE;
 		return(1);
 	}
 	return(0);
@@ -156,13 +164,6 @@ int					width(t_printf *prnt)
 }
 
 
-void					putchar_and_count(t_printf *prnt, char c)
-{
-	prnt->buff[prnt->count] = c;
-	prnt->count++;
-}
-
-
 int						ft_atoi_nb(const char *str, int *nb)
 {
 	struct s_atoi a;
@@ -205,23 +206,38 @@ void		if_procent(t_printf *prnt)
 			prnt->format++;
 			continue;
 		}
-		if (width(prnt))
+		else if (width(prnt))
 		{
 			continue;
 		}
-		if (accuracy(prnt))
+		else if (accuracy(prnt))
 		{
 			continue;
 		}
-		if (!(MODS_TRUE == (prnt->flags & FORM_TRUE)))
+		else if (!(MODS_TRUE == (prnt->flags & MODS_TRUE)))
+		{
 			if (mods(prnt))
 			{
 				prnt->format++;
 				continue;
 			}
-		if (!(FORM_TRUE == (prnt->flags & FORM_TRUE)))
+		}
+		else if (!(FORM_TRUE == (prnt->flags & FORM_TRUE)))
 			form(prnt);
+		else if (*prnt->format == ' ')
+		{
+			putchar_and_count(prnt, *prnt->format);
+		}
+		else
+		{
+			while (*prnt->format != '%' || prnt->format != '\0')
+			{
+				putchar_and_count(prnt, *prnt->format);
+				prnt->format++;
+			}
+		}
 		if (*prnt->format != '\0' && *prnt->format != '%')
 			prnt->format++;
 	}
+	prnt->flags |= PRO_TRUE;
 }

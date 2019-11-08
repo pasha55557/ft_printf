@@ -6,7 +6,7 @@
 /*   By: rsticks <rsticks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 14:59:55 by rsticks           #+#    #+#             */
-/*   Updated: 2019/11/08 16:30:24 by rsticks          ###   ########.fr       */
+/*   Updated: 2019/11/08 17:58:36 by rsticks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@
 
 # define FORM_TRUE (1 << 26)
 # define MODS_TRUE (1 << 27)
+# define PRO_TRUE (1 << 28)
+# define DOUBLE_PRO (1 << 29)
 
 typedef struct		s_flags
 {

@@ -6,11 +6,17 @@
 /*   By: rsticks <rsticks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 15:57:15 by rsticks           #+#    #+#             */
-/*   Updated: 2019/11/08 16:30:24 by rsticks          ###   ########.fr       */
+/*   Updated: 2019/11/08 18:10:14 by rsticks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
+
+void					putchar_and_count(t_printf *prnt, char c)
+{
+	prnt->buff[prnt->count] = c;
+	prnt->count++;
+}
 
 void		parser(t_printf *prnt)
 {
@@ -21,6 +27,10 @@ void		parser(t_printf *prnt)
 	{
 		if (*prnt->format == '%')
 		{
+			if (PRO_TRUE == (prnt->flags & PRO_TRUE) && (FORM_TRUE != (prnt->flags & FORM_TRUE)))
+			{
+				prnt->flags |= DOUBLE_PRO;
+			}
 			prnt->format++;
 			if_procent(prnt);
 		}

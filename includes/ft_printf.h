@@ -6,7 +6,7 @@
 /*   By: rsticks <rsticks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 14:59:55 by rsticks           #+#    #+#             */
-/*   Updated: 2019/11/08 17:58:36 by rsticks          ###   ########.fr       */
+/*   Updated: 2019/12/01 18:50:41 by rsticks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ typedef	struct		s_printf
 	char			*buff;
 }					t_printf;
 
+void				transform(t_printf *prnt);
+void				ft_intger(t_printf *prnt);
 int					mods(t_printf *prnt);
 void				form(t_printf *prnt);
 int					ft_printf(const char *format, ...);

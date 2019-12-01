@@ -6,7 +6,7 @@
 /*   By: rsticks <rsticks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 18:42:14 by rsticks           #+#    #+#             */
-/*   Updated: 2019/11/08 19:01:21 by rsticks          ###   ########.fr       */
+/*   Updated: 2019/12/01 19:21:01 by rsticks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,24 +197,23 @@ void		if_procent(t_printf *prnt)
 	int			temp;
 
 	temp = 0;
-	
-	
-	while (*prnt->format != '\0' && *prnt->format != '%')
+	prnt->format++;
+	while (*prnt->format != '\0' && *prnt->format != '%' && (!(FORM_TRUE == (prnt->flags & FORM_TRUE))))
 	{
 		if (flags(prnt))
 		{
 			prnt->format++;
 			continue;
 		}
-		else if (width(prnt))
+		if (width(prnt))
 		{
 			continue;
 		}
-		else if (accuracy(prnt))
+		if (accuracy(prnt))
 		{
 			continue;
 		}
-		else if (!(MODS_TRUE == (prnt->flags & MODS_TRUE)))
+		if (!(MODS_TRUE == (prnt->flags & MODS_TRUE)))
 		{
 			if (mods(prnt))
 			{
@@ -222,22 +221,21 @@ void		if_procent(t_printf *prnt)
 				continue;
 			}
 		}
-		else if (!(FORM_TRUE == (prnt->flags & FORM_TRUE)))
-			form(prnt);
-		else if (*prnt->format == ' ')
+		if (!(FORM_TRUE == (prnt->flags & FORM_TRUE)))
 		{
-			putchar_and_count(prnt, *prnt->format);
+			form(prnt);
+			if (FORM_TRUE == (prnt->flags & FORM_TRUE))
+			{
+				transform(prnt);
+				prnt->format++;
+				continue;
+			}
 		}
 		else
 		{
-			while (*prnt->format != '%' || prnt->format != '\0')
-			{
-				putchar_and_count(prnt, *prnt->format);
-				prnt->format++;
-			}
-		}
-		if (*prnt->format != '\0' && *prnt->format != '%')
+			putchar_and_count(prnt, *prnt->format);
 			prnt->format++;
+		}
 	}
 	prnt->flags |= PRO_TRUE;
 }

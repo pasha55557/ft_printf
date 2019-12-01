@@ -1,36 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   transform.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rsticks <rsticks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/29 18:56:00 by rsticks           #+#    #+#             */
-/*   Updated: 2019/12/01 20:01:42 by rsticks          ###   ########.fr       */
+/*   Created: 2019/12/01 15:56:32 by rsticks           #+#    #+#             */
+/*   Updated: 2019/12/01 17:30:01 by rsticks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "../includes/ft_printf.h"
 
-int	main()
+void		transform(t_printf *prnt)
 {
-	int ft_i;
-	int j;
-	char c;
-	int d;
-	double	f;
-
-	f = 5.006;
-	d = 97;
-	c = 'f';
-	ft_i = 0;
-	j = 0;
-	ft_i = printf("(% i )\n", d);
-	//ft_i = printf("(%5i)\n", d);
-	//printf("%e",);
-	j = ft_printf("(% i )\n", d);
-	printf("\ncount printf     (%d)\n", ft_i);
-	printf("count ft_printf  (%d)\n", j);
-	return(0);
+	if (FORM_D_I == (prnt->flags & FORM_D_I))
+	{
+		ft_intger(prnt);
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: rsticks <rsticks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 15:57:15 by rsticks           #+#    #+#             */
-/*   Updated: 2019/11/08 18:10:14 by rsticks          ###   ########.fr       */
+/*   Updated: 2019/12/01 20:00:54 by rsticks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,19 @@ void		parser(t_printf *prnt)
 		{
 			if (PRO_TRUE == (prnt->flags & PRO_TRUE) && (FORM_TRUE != (prnt->flags & FORM_TRUE)))
 			{
-				prnt->flags |= DOUBLE_PRO;
+				prnt->flags = 0;
+				putchar_and_count(prnt, '%');
+				continue;
 			}
-			prnt->format++;
-			if_procent(prnt);
+			if (DOUBLE_PRO != (prnt->flags & DOUBLE_PRO))
+			{
+				if_procent(prnt);
+				continue;
+			}
+			else
+			{
+				prnt->format++;
+			}
 		}
 		else
 		{
@@ -50,9 +59,11 @@ int	ft_printf(const char *format, ...)
 	t_printf	*prnt;
 
 	prnt = (t_printf*)malloc(sizeof(t_printf));
+	prnt->flags = 0;
 	prnt->format = format; 
 	prnt->buff = (char*)malloc(sizeof(char) * 255);
 	va_start(prnt->arg, format);
 	parser(prnt);
+	ft_putstr(prnt->buff);
 	return(prnt->count);
 }

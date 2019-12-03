@@ -6,7 +6,7 @@
 /*   By: rsticks <rsticks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 18:42:14 by rsticks           #+#    #+#             */
-/*   Updated: 2019/12/01 19:21:01 by rsticks          ###   ########.fr       */
+/*   Updated: 2019/12/03 18:25:42 by rsticks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,8 +109,11 @@ int					accuracy(t_printf *prnt)
 	int tmp;
 
 	tmp = 0;
+	
 	if (*prnt->format == '.')
 	{
+		if (FLAG_NULL == (prnt->flags & FLAG_NULL))
+			prnt->flags -= FLAG_NULL;
 		prnt->format++;
 		prnt->accuracy = ft_atoi_nb(prnt->format, &tmp);
 		prnt->format += tmp;

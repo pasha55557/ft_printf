@@ -6,7 +6,7 @@
 #    By: rsticks <rsticks@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/29 15:59:04 by rsticks           #+#    #+#              #
-#    Updated: 2019/12/01 19:30:02 by rsticks          ###   ########.fr        #
+#    Updated: 2019/12/03 17:30:56 by rsticks          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ SRCS_FILES = ft_printf.c main.c parser.c integer.c transform.c
 SRCS = $(addprefix $(SRCS_PATH), $(SRCS_FILES))
 
 LIB_SRCS_PATH = ./libft/
-LIB_SRCS_FILES = ft_strcmp.c ft_putchar.c ft_putnbr.c ft_putchar_fd.c ft_atoi.c ft_itoa.c ft_putstr.c
+LIB_SRCS_FILES = ft_strcmp.c ft_putnbr.c ft_putchar_fd.c ft_atoi.c ft_itoa.c ft_strlen.c
 LIB_SRCS = $(addprefix $(LIB_SRCS_PATH), $(LIB_SRCS_FILES))
 
 LIB_OBJECTS_PATH = ./objs/
@@ -28,7 +28,7 @@ OBJECTS_PATH = ./objs/
 OBJECTS_FILES = $(SRCS_FILES:.c=.o)
 OBJECTS = $(addprefix $(OBJECTS_PATH), $(OBJECTS_FILES))
 
-COMPILE = gcc -Wall -Wextra -O3
+COMPILE = gcc -Wall -Wextra
 
 INCLUDES = -I./includes -I./libs/libft
 HEADERS_PATH = ./includes/

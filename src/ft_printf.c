@@ -6,7 +6,7 @@
 /*   By: rsticks <rsticks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 15:57:15 by rsticks           #+#    #+#             */
-/*   Updated: 2019/12/01 20:00:54 by rsticks          ###   ########.fr       */
+/*   Updated: 2019/12/03 18:28:52 by rsticks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,15 @@ void		parser(t_printf *prnt)
 {
 	prnt->count = 0;
 	prnt->width = 0;
+	prnt->accuracy = 0;
 
 	while (*prnt->format != '\0')
 	{
 		if (*prnt->format == '%')
 		{
-			if (PRO_TRUE == (prnt->flags & PRO_TRUE) && (FORM_TRUE != (prnt->flags & FORM_TRUE)))
+			if (PRO_TRUE == (prnt->flags & PRO_TRUE)  && (FORM_TRUE != (prnt->flags & FORM_TRUE)))
 			{
+				prnt->format++;
 				prnt->flags = 0;
 				putchar_and_count(prnt, '%');
 				continue;
@@ -36,6 +38,8 @@ void		parser(t_printf *prnt)
 			if (DOUBLE_PRO != (prnt->flags & DOUBLE_PRO))
 			{
 				if_procent(prnt);
+				if (FORM_TRUE == (prnt->flags & FORM_TRUE))
+					prnt->flags = 0;				
 				continue;
 			}
 			else
@@ -64,6 +68,6 @@ int	ft_printf(const char *format, ...)
 	prnt->buff = (char*)malloc(sizeof(char) * 255);
 	va_start(prnt->arg, format);
 	parser(prnt);
-	ft_putstr(prnt->buff);
+	write(1, prnt->buff, prnt->count);
 	return(prnt->count);
 }

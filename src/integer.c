@@ -6,7 +6,7 @@
 /*   By: rsticks <rsticks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/01 16:46:01 by rsticks           #+#    #+#             */
-/*   Updated: 2019/12/05 18:48:48 by rsticks          ###   ########.fr       */
+/*   Updated: 2019/12/05 19:30:52 by rsticks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,14 +56,45 @@ static char			*ft_long_itoa(long long int n)
 	return (s);
 }
 
-
-void		ft_intger(t_printf *prnt)
+static char		*u_modificator(t_printf *prnt)
 {
-	char	*c;
-	int		count;
+	char 	*c;
 	long long int ln;
 
-	count = 0;
+	ln = 0;
+	if (MOD_L == (prnt->flags & MOD_L))
+	{
+		ln = va_arg(prnt->arg, unsigned long int);
+		c = ft_long_itoa((long long int)ln);
+	}
+	else if (MOD_LL == (prnt->flags & MOD_LL))
+	{
+		ln = va_arg(prnt->arg, unsigned long long int);
+		c = ft_long_itoa(ln);
+	}
+	else if (MOD_H == (prnt->flags & MOD_H))
+	{
+		ln = (short int)va_arg(prnt->arg, unsigned int);
+		c = ft_long_itoa((long long int)ln);
+	}
+	else if (MOD_HH == (prnt->flags & MOD_HH))
+	{
+		ln = (char)va_arg(prnt->arg, unsigned int);
+		c = ft_long_itoa((long long int)ln);
+	}
+	else
+	{
+		ln = va_arg(prnt->arg, unsigned int);
+		c = ft_long_itoa((long long int)ln);
+	}
+	return (c);
+}
+
+static char		*modificator(t_printf *prnt)
+{
+	char 	*c;
+	long long int ln;
+
 	ln = 0;
 	if (MOD_L == (prnt->flags & MOD_L))
 	{
@@ -89,7 +120,22 @@ void		ft_intger(t_printf *prnt)
 	{
 		ln = va_arg(prnt->arg, int);
 		c = ft_long_itoa((long long int)ln);
-	}	
+	}
+	return (c);
+}
+
+void		ft_intger(t_printf *prnt)
+{
+	char	*c;
+	int		count;
+	//long long int ln;
+
+	count = 0;
+	if (FORM_D_I == (prnt->flags & FORM_D_I))
+		c = modificator(prnt);
+	if (FORM_U == (prnt->flags & FORM_U))
+		c = u_modificator(prnt);
+	
 	count = ft_strlen(c);
 	if (FLAG_PLUS == (prnt->flags & FLAG_PLUS) && c[0] != '-')
 		count++;

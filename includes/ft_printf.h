@@ -6,7 +6,7 @@
 /*   By: rsticks <rsticks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 14:59:55 by rsticks           #+#    #+#             */
-/*   Updated: 2019/12/01 18:50:41 by rsticks          ###   ########.fr       */
+/*   Updated: 2019/12/05 17:07:31 by rsticks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,15 @@
 # define PRO_TRUE (1 << 28)
 # define DOUBLE_PRO (1 << 29)
 
+typedef struct		s_int
+{
+	short int		sh;
+	int				in;
+	long int		lin;
+	long long int	llin;
+	char			ch;
+}					t_int;
+
 typedef struct		s_flags
 {
 	char			minus;
@@ -69,7 +78,9 @@ typedef	struct		s_printf
 	int				count;
 	int				width;
 	char			*buff;
+	t_int			st_int;
 }					t_printf;
+
 
 void				transform(t_printf *prnt);
 void				ft_intger(t_printf *prnt);

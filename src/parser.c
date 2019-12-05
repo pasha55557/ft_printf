@@ -6,7 +6,7 @@
 /*   By: rsticks <rsticks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 18:42:14 by rsticks           #+#    #+#             */
-/*   Updated: 2019/12/03 18:25:42 by rsticks          ###   ########.fr       */
+/*   Updated: 2019/12/05 18:09:05 by rsticks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ int					mods(t_printf *prnt)
 	{
 		if (prnt->format[1] == 'h')
 		{
+			prnt->format++;
 			prnt->flags |=  MOD_HH;
 		}
 		else
@@ -70,6 +71,7 @@ int					mods(t_printf *prnt)
 	{
 		if (prnt->format[1] == 'l')
 		{
+			prnt->format++;
 			prnt->flags |=  MOD_LL;
 		}
 		else

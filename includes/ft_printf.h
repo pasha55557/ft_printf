@@ -6,7 +6,7 @@
 /*   By: rsticks <rsticks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 14:59:55 by rsticks           #+#    #+#             */
-/*   Updated: 2019/12/05 17:07:31 by rsticks          ###   ########.fr       */
+/*   Updated: 2019/12/10 17:04:23 by rsticks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@
 # define FORM_S (1 << 23)
 # define FORM_P (1 << 24)
 # define FORM_N (1 << 25)
+# define FORM_O (1 << 30)
 
 # define FORM_TRUE (1 << 26)
 # define MODS_TRUE (1 << 27)
@@ -81,7 +82,15 @@ typedef	struct		s_printf
 	t_int			st_int;
 }					t_printf;
 
-
+char				*o_modificator(t_printf *prnt);
+void				o_intger(t_printf *prnt);
+char				*ft_dec_to(unsigned long long int d, int sys);
+void				u_intger(t_printf *prnt);
+void				process_width(t_printf *prnt, char *c);
+char				*modificator(t_printf *prnt);
+char				*u_modificator(t_printf *prnt);
+char				*ft_long_itoa(long long int n);
+int					ftft_digits_count(long long int n);
 void				transform(t_printf *prnt);
 void				ft_intger(t_printf *prnt);
 int					mods(t_printf *prnt);

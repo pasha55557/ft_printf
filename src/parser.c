@@ -6,7 +6,7 @@
 /*   By: rsticks <rsticks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 18:42:14 by rsticks           #+#    #+#             */
-/*   Updated: 2019/12/05 18:09:05 by rsticks          ###   ########.fr       */
+/*   Updated: 2019/12/10 16:19:38 by rsticks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void					form(t_printf *prnt)
 		prnt->flags |= FORM_D_I;
 	if (*prnt->format == 'u')
 		prnt->flags |= FORM_U;
+	if (*prnt->format == 'o')
+		prnt->flags |= FORM_O;
 	if (*prnt->format == 'X')
 		prnt->flags |= FORM_X;
 	if (*prnt->format == 'x')

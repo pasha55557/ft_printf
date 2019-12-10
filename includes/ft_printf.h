@@ -6,7 +6,7 @@
 /*   By: rsticks <rsticks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 14:59:55 by rsticks           #+#    #+#             */
-/*   Updated: 2019/12/10 17:04:23 by rsticks          ###   ########.fr       */
+/*   Updated: 2019/12/10 19:57:52 by rsticks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,9 +82,12 @@ typedef	struct		s_printf
 	t_int			st_int;
 }					t_printf;
 
+void				unsigned_process_width(t_printf *prnt, char *c);
+char				*x_modificator(t_printf *prnt);
+void				x_intger(t_printf *prnt);
 char				*o_modificator(t_printf *prnt);
 void				o_intger(t_printf *prnt);
-char				*ft_dec_to(unsigned long long int d, int sys);
+char				*ft_dec_to(unsigned long long int d, int sys, t_printf *prnt);
 void				u_intger(t_printf *prnt);
 void				process_width(t_printf *prnt, char *c);
 char				*modificator(t_printf *prnt);

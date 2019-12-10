@@ -6,7 +6,7 @@
 /*   By: rsticks <rsticks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 15:19:20 by rsticks           #+#    #+#             */
-/*   Updated: 2019/12/10 15:27:37 by rsticks          ###   ########.fr       */
+/*   Updated: 2019/12/10 19:57:33 by rsticks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,6 @@ void		u_intger(t_printf *prnt)
 {
 	char	*c;
 
-	c = modificator(prnt);
-	process_width(prnt, c);
+	c = u_modificator(prnt);
+	unsigned_process_width(prnt, c);
 }

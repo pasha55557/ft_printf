@@ -6,19 +6,20 @@
 #    By: rsticks <rsticks@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/29 15:59:04 by rsticks           #+#    #+#              #
-#    Updated: 2019/12/11 15:57:37 by rsticks          ###   ########.fr        #
+#    Updated: 2019/12/11 19:34:05 by rsticks          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 
 SRCS_PATH = ./src/
-SRCS_FILES = ft_printf.c main.c parser.c integer.c transform.c \
+SRCS_FILES = main.c ft_printf.c parser.c integer.c transform.c \
 			additional.c u_integer.c o_integer.c x_integer.c char.c
 SRCS = $(addprefix $(SRCS_PATH), $(SRCS_FILES))
 
 LIB_SRCS_PATH = ./libft/
-LIB_SRCS_FILES = ft_strcmp.c ft_putnbr.c ft_putchar_fd.c ft_atoi.c ft_itoa.c ft_strlen.c
+LIB_SRCS_FILES = ft_strcmp.c ft_putnbr.c ft_putchar_fd.c ft_atoi.c ft_itoa.c ft_strlen.c ft_strnew.c \
+				ft_memset.c
 LIB_SRCS = $(addprefix $(LIB_SRCS_PATH), $(LIB_SRCS_FILES))
 
 LIB_OBJECTS_PATH = ./objs/
@@ -42,7 +43,7 @@ COLOR_SUCCESS = \033[0;32m
 
 all: $(NAME)
 
-$(NAME): $(OBJECTS) $(LIB_OBJECTS) $(HEADERS)
+$(NAME): $(LIB_OBJECTS_PATH) $(OBJECTS) $(LIB_OBJECTS) $(HEADERS)
 	@echo "$(COLOR_RENDERING)Compiling...$(COLOR_RESET)"
 	@ar rc $(NAME) $(OBJECTS) $(LIB_OBJECTS) $(LIB)
 	@ranlib $(NAME)
@@ -56,10 +57,14 @@ $(OBJECTS_PATH)%.o: $(SRCS_PATH)%.c
 $(LIB_OBJECTS_PATH)%.o: $(LIB_SRCS_PATH)%.c
 	@$(COMPILE) $(INCLUDES) -c $< -o $@
 
+$(LIB_OBJECTS_PATH):
+	@mkdir $@
+
 clean:
 	@echo "$(COLOR_RENDERING)Cleaning...$(COLOR_RESET)"
 	@rm -f $(OBJECTS)
-	@rm -f $(LIB_OBJECTS)
+	@rm -rf $(LIB_OBJECTS_PATH)
+	@rm -rf $(LIB_OBJECTS)
 	@echo "\033[A\033[K\033[A"
 	@echo "$(COLOR_SUCCESS)OK$(COLOR_RESET)"
 
@@ -69,6 +74,9 @@ fclean: clean
 re: fclean all
 
 main: all
-
+	@echo "$(COLOR_RENDERING)Compiling...$(COLOR_RESET)"
+	@$(MAKE) -C $(LIB_SRCS_PATH)
 	@$(COMPILE) -o ft_printf $(OBJECTS) libft/libft.a
+	@$(MAKE) fclean -C $(LIB_SRCS_PATH)
+	@echo "\033[A\033[K\033[A"
 	@echo "$(COLOR_SUCCESS)OK$(COLOR_RESET)"

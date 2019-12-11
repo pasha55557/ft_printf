@@ -6,7 +6,7 @@
 /*   By: rsticks <rsticks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/11 15:38:44 by rsticks           #+#    #+#             */
-/*   Updated: 2019/12/11 16:00:07 by rsticks          ###   ########.fr       */
+/*   Updated: 2019/12/11 17:09:22 by rsticks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,3 +62,14 @@ void			ft_char(t_printf *prnt)
 	*c = (unsigned char)va_arg(prnt->arg, unsigned int);
 	char_process_width(prnt, c);
 }
+
+void			ft_str(t_printf *prnt)
+{
+	char		*c;
+
+//c = va_arg(prnt->arg, ptrdiff_t);
+
+	c = va_arg(prnt->arg, char*);
+	char_process_width(prnt, c);
+}
+

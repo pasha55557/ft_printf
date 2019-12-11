@@ -6,7 +6,7 @@
 /*   By: rsticks <rsticks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 15:18:06 by rsticks           #+#    #+#             */
-/*   Updated: 2019/12/11 14:36:14 by rsticks          ###   ########.fr       */
+/*   Updated: 2019/12/11 17:36:37 by rsticks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,10 +168,10 @@ void		unsigned_process_width(t_printf *prnt, char *c)
 		prnt->accuracy -= count;
 		count += prnt->accuracy;
 	}
-	if (FLAG_SHARP == (prnt->flags & FLAG_SHARP))
+	if ((FLAG_SHARP == (prnt->flags & FLAG_SHARP)) || (FORM_P == (prnt->flags & FORM_P)))
 	{
 		count++;
-		if (FORM_x == (prnt->flags & FORM_x))
+		if (FORM_x == (prnt->flags & FORM_x) || (FORM_P == (prnt->flags & FORM_P)))
 			count++;
 		if (FORM_X == (prnt->flags & FORM_X))
 			count++;
@@ -187,17 +187,13 @@ void		unsigned_process_width(t_printf *prnt, char *c)
 		}
 	}
 
-	if (FLAG_SHARP == (prnt->flags & FLAG_SHARP))
+	if ((FLAG_SHARP == (prnt->flags & FLAG_SHARP)) || (FORM_P == (prnt->flags & FORM_P)))
 	{
 		putchar_and_count(prnt, '0');
-		if (FORM_x == (prnt->flags & FORM_x))
-		{
+		if (FORM_x == (prnt->flags & FORM_x) || (FORM_P == (prnt->flags & FORM_P)))
 			putchar_and_count(prnt, 'x');
-		}
 		if (FORM_X == (prnt->flags & FORM_X))
-		{
 			putchar_and_count(prnt, 'X');
-		}
 	}
 	
 

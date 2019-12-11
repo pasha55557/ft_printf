@@ -6,7 +6,7 @@
 /*   By: rsticks <rsticks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 14:59:55 by rsticks           #+#    #+#             */
-/*   Updated: 2019/12/11 15:57:16 by rsticks          ###   ########.fr       */
+/*   Updated: 2019/12/11 20:22:29 by rsticks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # include <stdio.h>
 # include "../libft/libft.h"
 # include <stdarg.h>
+#include <stddef.h>
 
 # define FLAG_MINUS (1 << 0)
 # define FLAG_SPACE (1 << 1)
@@ -82,6 +83,11 @@ typedef	struct		s_printf
 	t_int			st_int;
 }					t_printf;
 
+int					ft_udigits_count(unsigned long long int n);
+char				*ft_ulong_itoa(unsigned long long int n);
+void				ft_ptr_n(t_printf *prnt);
+void				ft_ptr(t_printf *prnt);
+void				ft_str(t_printf *prnt);
 void				ft_char(t_printf *prnt);
 void				unsigned_process_width(t_printf *prnt, char *c);
 char				*x_modificator(t_printf *prnt);

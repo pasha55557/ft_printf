@@ -6,7 +6,7 @@
 /*   By: rsticks <rsticks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 18:56:00 by rsticks           #+#    #+#             */
-/*   Updated: 2019/12/11 16:02:01 by rsticks          ###   ########.fr       */
+/*   Updated: 2019/12/11 19:40:41 by rsticks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,22 +15,29 @@
 
 int	main()
 {
-	int ft_i;
-	int j;
-	char c;
-	int d;
+	int 	ft_i;
+	int 	j;
+	char	c;
+	long long int 	d;
 	double	f;
+	//int		*n;
+	//int		*n2;
+	char 	*s = "HEllo Bitch";
 
 	f = 0.006;
-	d = 97;
+	d = -42;
 	c = 'f';
 	ft_i = 0;
 	j = 0;
+	//n = malloc(sizeof(int));
+	//n2 = malloc(sizeof(int));
 	
-	ft_i = printf("%-5c %d\n", d, d);
+	ft_i = printf("%lu\n", d); 
+	//ft_i = printf("%d\n", *n);
 	//ft_i = printf("(%5i)\n", d);
 	//printf("%e",);
-	j = ft_printf("%-5c %d\n", d, d);
+	j = ft_printf("%lu\n", d); 
+	//j = ft_printf("%d\n", *n2);
 	printf("\ncount printf     (%d)\n", ft_i);
 	printf("count ft_printf  (%d)\n", j);
 	return(0);

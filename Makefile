@@ -6,7 +6,7 @@
 #    By: rsticks <rsticks@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/29 15:59:04 by rsticks           #+#    #+#              #
-#    Updated: 2019/12/10 18:10:42 by rsticks          ###   ########.fr        #
+#    Updated: 2019/12/11 15:57:37 by rsticks          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = libftprintf.a
 
 SRCS_PATH = ./src/
 SRCS_FILES = ft_printf.c main.c parser.c integer.c transform.c \
-			additional.c u_integer.c o_integer.c x_integer.c
+			additional.c u_integer.c o_integer.c x_integer.c char.c
 SRCS = $(addprefix $(SRCS_PATH), $(SRCS_FILES))
 
 LIB_SRCS_PATH = ./libft/

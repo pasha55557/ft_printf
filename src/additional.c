@@ -6,7 +6,7 @@
 /*   By: rsticks <rsticks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 15:18:06 by rsticks           #+#    #+#             */
-/*   Updated: 2019/12/10 20:06:23 by rsticks          ###   ########.fr       */
+/*   Updated: 2019/12/11 14:36:14 by rsticks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,16 +190,13 @@ void		unsigned_process_width(t_printf *prnt, char *c)
 	if (FLAG_SHARP == (prnt->flags & FLAG_SHARP))
 	{
 		putchar_and_count(prnt, '0');
-		count--;
 		if (FORM_x == (prnt->flags & FORM_x))
 		{
 			putchar_and_count(prnt, 'x');
-			count--;
 		}
 		if (FORM_X == (prnt->flags & FORM_X))
 		{
 			putchar_and_count(prnt, 'X');
-			count--;
 		}
 	}
 	

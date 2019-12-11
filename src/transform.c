@@ -6,7 +6,7 @@
 /*   By: rsticks <rsticks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/01 15:56:32 by rsticks           #+#    #+#             */
-/*   Updated: 2019/12/10 19:01:59 by rsticks          ###   ########.fr       */
+/*   Updated: 2019/12/11 16:00:44 by rsticks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,9 @@ void		transform(t_printf *prnt)
 	{
 		x_intger(prnt);
 	}
+	if (FORM_C == (prnt->flags & FORM_C))
+	{
+		ft_char(prnt);
+	}
+	
 }

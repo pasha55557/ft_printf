@@ -6,11 +6,17 @@
 /*   By: rsticks <rsticks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 15:57:15 by rsticks           #+#    #+#             */
-/*   Updated: 2019/12/10 14:51:06 by rsticks          ###   ########.fr       */
+/*   Updated: 2019/12/13 19:10:36 by rsticks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
+static void					init_prnt(t_printf *prnt)
+{
+	prnt->width = 0;
+	prnt->accuracy = -2;
+	prnt->flags = 0;
+}
 
 void					putchar_and_count(t_printf *prnt, char c)
 {
@@ -22,7 +28,7 @@ void		parser(t_printf *prnt)
 {
 	prnt->count = 0;
 	prnt->width = 0;
-	prnt->accuracy = 0;
+	prnt->accuracy = -2;
 
 	while (*prnt->format != '\0')
 	{
@@ -31,15 +37,20 @@ void		parser(t_printf *prnt)
 			if (PRO_TRUE == (prnt->flags & PRO_TRUE)  && (FORM_TRUE != (prnt->flags & FORM_TRUE)))
 			{
 				prnt->format++;
-				prnt->flags = 0;
 				putchar_and_count(prnt, '%');
+				if ((prnt->width != 0) && (FLAG_MINUS == (prnt->flags & FLAG_MINUS)))
+				{
+					prnt->width--;
+					unsigned_process_width(prnt, "\0");
+				}
+				init_prnt(prnt);
 				continue;
 			}
 			if (DOUBLE_PRO != (prnt->flags & DOUBLE_PRO))
 			{
 				if_procent(prnt);
 				if (FORM_TRUE == (prnt->flags & FORM_TRUE))
-					prnt->flags = 0;				
+					init_prnt(prnt);				
 				continue;
 			}
 			else

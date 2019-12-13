@@ -6,7 +6,7 @@
 /*   By: rsticks <rsticks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 18:42:14 by rsticks           #+#    #+#             */
-/*   Updated: 2019/12/11 17:24:05 by rsticks          ###   ########.fr       */
+/*   Updated: 2019/12/13 16:05:42 by rsticks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -238,11 +238,16 @@ void		if_procent(t_printf *prnt)
 				continue;
 			}
 		}
-		else
-		{
+		//else
+		//{
 			putchar_and_count(prnt, *prnt->format);
 			prnt->format++;
-		}
+		//}
 	}
 	prnt->flags |= PRO_TRUE;
+	if (!(FORM_TRUE == (prnt->flags & FORM_TRUE)) && (prnt->width != 0) && (FLAG_MINUS != (prnt->flags & FLAG_MINUS)))
+	{
+		prnt->width--;
+		unsigned_process_width(prnt, "\0");
+	}
 }

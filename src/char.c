@@ -6,7 +6,7 @@
 /*   By: rsticks <rsticks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/11 15:38:44 by rsticks           #+#    #+#             */
-/*   Updated: 2019/12/14 17:50:30 by rsticks          ###   ########.fr       */
+/*   Updated: 2019/12/14 18:25:21 by rsticks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ static void		char_process_width(t_printf *prnt, char *c)
 	int			count;
 
 	count = ft_strlen(c);
+	if (*c == NULL && (FORM_C == (prnt->flags & FORM_C)))
+		count++;
 	if (prnt->accuracy >= 0 && prnt->accuracy < count)
 		count = prnt->accuracy;
 	

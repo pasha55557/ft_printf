@@ -6,7 +6,7 @@
 /*   By: rsticks <rsticks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 15:18:06 by rsticks           #+#    #+#             */
-/*   Updated: 2019/12/14 18:01:44 by rsticks          ###   ########.fr       */
+/*   Updated: 2019/12/14 19:45:04 by rsticks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,11 +139,17 @@ void		process_width(t_printf *prnt, char *c)
 			prnt->width--;
 		}
 	}
-
+	if (c[0] == '-')
+		putchar_and_count(prnt, '-');
+	if (FLAG_PLUS == (prnt->flags & FLAG_PLUS))
+	{
+		if (c[0] != '-' || c[0] == 0)
+			putchar_and_count(prnt, '+');
 	while (prnt->accuracy > 0)
 	{
 		putchar_and_count(prnt, '0');
 		prnt->accuracy--;
+	}
 	}
 		
 	if (FLAG_NULL == (prnt->flags & FLAG_NULL) && FLAG_MINUS != (prnt->flags & FLAG_MINUS))
@@ -155,18 +161,15 @@ void		process_width(t_printf *prnt, char *c)
 			prnt->width--;
 		}
 	}
-	if (FLAG_PLUS == (prnt->flags & FLAG_PLUS))
-	{
-		if (c[0] != '-' || c[0] == 0)
-			putchar_and_count(prnt, '+');
-	}
-	else if (FLAG_SPACE == (prnt->flags & FLAG_SPACE))
+	else if (FLAG_SPACE == (prnt->flags & FLAG_SPACE) && (FLAG_PLUS != (prnt->flags & FLAG_PLUS)))
 	{
 		if (c[0] != '-' || c[0] == 0)
 			putchar_and_count(prnt, ' ');
 	}
 	while (*c != '\0')
 	{
+		if (*c == '-')
+			c++;
 		if (prnt->accuracy == -3)
 			putchar_and_count(prnt, ' ');
 		else if (prnt->accuracy == -4)
@@ -206,7 +209,7 @@ void		unsigned_process_width(t_printf *prnt, char *c)
 		if (prnt->accuracy > 0)
 			count += prnt->accuracy;	
 	}
-	if (((FLAG_SHARP == (prnt->flags & FLAG_SHARP)) || (FORM_P == (prnt->flags & FORM_P))) && (*c != '0'))
+	if (((FLAG_SHARP == (prnt->flags & FLAG_SHARP)) || (FORM_P == (prnt->flags & FORM_P))) && ((*c != '0') || FORM_O == (prnt->flags & FORM_O)))
 	{
 		count++;
 		if (FORM_x == (prnt->flags & FORM_x) || (FORM_P == (prnt->flags & FORM_P)))
@@ -225,7 +228,7 @@ void		unsigned_process_width(t_printf *prnt, char *c)
 		}
 	}
 
-	if (((FLAG_SHARP == (prnt->flags & FLAG_SHARP)) || (FORM_P == (prnt->flags & FORM_P))) && (*c != '0'))
+	if (((FLAG_SHARP == (prnt->flags & FLAG_SHARP)) || (FORM_P == (prnt->flags & FORM_P))) && ((*c != '0') || FORM_O == (prnt->flags & FORM_O)))
 	{
 		putchar_and_count(prnt, '0');
 		if (FORM_x == (prnt->flags & FORM_x) || (FORM_P == (prnt->flags & FORM_P)))

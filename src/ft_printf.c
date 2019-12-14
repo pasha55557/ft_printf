@@ -6,7 +6,7 @@
 /*   By: rsticks <rsticks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 15:57:15 by rsticks           #+#    #+#             */
-/*   Updated: 2019/12/13 19:10:36 by rsticks          ###   ########.fr       */
+/*   Updated: 2019/12/14 16:39:30 by rsticks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ static void					init_prnt(t_printf *prnt)
 
 void					putchar_and_count(t_printf *prnt, char c)
 {
-	prnt->buff[prnt->count] = c;
-	prnt->count++;
+		prnt->buff[prnt->count] = c;
+		prnt->count++;	
 }
 
 void		parser(t_printf *prnt)

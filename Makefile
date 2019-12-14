@@ -6,7 +6,7 @@
 #    By: rsticks <rsticks@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/29 15:59:04 by rsticks           #+#    #+#              #
-#    Updated: 2019/12/11 19:34:05 by rsticks          ###   ########.fr        #
+#    Updated: 2019/12/14 17:35:26 by rsticks          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -76,7 +76,12 @@ re: fclean all
 main: all
 	@echo "$(COLOR_RENDERING)Compiling...$(COLOR_RESET)"
 	@$(MAKE) -C $(LIB_SRCS_PATH)
+	@echo "\033[A\033[K\033[A"
+	@echo "\033[A\033[K\033[A"
+	@echo "\033[A\033[K\033[A"
+	@echo "\033[A\033[K\033[A"
 	@$(COMPILE) -o ft_printf $(OBJECTS) libft/libft.a
 	@$(MAKE) fclean -C $(LIB_SRCS_PATH)
+	@echo "\033[A\033[K\033[A"
 	@echo "\033[A\033[K\033[A"
 	@echo "$(COLOR_SUCCESS)OK$(COLOR_RESET)"

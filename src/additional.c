@@ -6,11 +6,21 @@
 /*   By: rsticks <rsticks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 15:18:06 by rsticks           #+#    #+#             */
-/*   Updated: 2019/12/13 19:25:43 by rsticks          ###   ########.fr       */
+/*   Updated: 2019/12/14 18:01:44 by rsticks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
+
+void					putstr_and_count(t_printf *prnt, char *c)
+{
+	while(*c != '\0')
+	{
+		prnt->buff[prnt->count] = *c;
+		prnt->count++;
+		c++;
+	}
+}
 
 int		ftft_digits_count(long long int n)
 {
@@ -98,17 +108,26 @@ char				*ft_long_itoa(long long int n)
 
 void		process_width(t_printf *prnt, char *c)
 {
-
+	char	*ptr;
 	int		count;
 
+	ptr = c;
 	count = 0;
 	count = ft_strlen(c);
 	if ((FLAG_PLUS == (prnt->flags & FLAG_PLUS) || FLAG_SPACE == (prnt->flags & FLAG_SPACE)) && (c[0] != '-'))
 		count++;
-	if (prnt->accuracy > 0)
+	if (prnt->accuracy == 0 && *c == '0')
+	{
+		if (prnt->width == 0)
+			prnt->accuracy = -4;
+		else
+			prnt->accuracy = -3;
+	}
+	if (prnt->accuracy >= 0)
 	{
 		prnt->accuracy -= count;
-		count += prnt->accuracy;
+		if (prnt->accuracy > 0)
+			count += prnt->accuracy;	
 	}
 	
 	if (FLAG_MINUS != (prnt->flags & FLAG_MINUS) && (FLAG_NULL != (prnt->flags & FLAG_NULL)))
@@ -148,7 +167,12 @@ void		process_width(t_printf *prnt, char *c)
 	}
 	while (*c != '\0')
 	{
-		putchar_and_count(prnt, *c);
+		if (prnt->accuracy == -3)
+			putchar_and_count(prnt, ' ');
+		else if (prnt->accuracy == -4)
+			prnt->accuracy = 0;
+		else
+			putchar_and_count(prnt, *c);
 		c++;
 	}
 	if (FLAG_MINUS == (prnt->flags & FLAG_MINUS))
@@ -164,10 +188,11 @@ void		process_width(t_printf *prnt, char *c)
 
 void		unsigned_process_width(t_printf *prnt, char *c)
 {
+	char	*ptr;
 	int		count;
 
+	ptr = c;
 	count = ft_strlen(c);
-
 	if (prnt->accuracy == 0 && *c == '0')
 	{
 		if (prnt->width == 0)
@@ -234,10 +259,6 @@ void		unsigned_process_width(t_printf *prnt, char *c)
 			prnt->accuracy = 0;
 		else
 			putchar_and_count(prnt, *c);
-//		if (!(prnt->accuracy == -1 && *c == '0'))
-//			putchar_and_count(prnt, *c);
-//		else
-//			putchar_and_count(prnt, ' ');
 		c++;
 	}
 	if (FLAG_MINUS == (prnt->flags & FLAG_MINUS))
@@ -249,4 +270,5 @@ void		unsigned_process_width(t_printf *prnt, char *c)
 			prnt->width--;
 		}
 	}
+	//free(ptr);
 }

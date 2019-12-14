@@ -6,7 +6,7 @@
 /*   By: rsticks <rsticks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/11 15:38:44 by rsticks           #+#    #+#             */
-/*   Updated: 2019/12/11 17:09:22 by rsticks          ###   ########.fr       */
+/*   Updated: 2019/12/14 17:50:30 by rsticks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ static void		char_process_width(t_printf *prnt, char *c)
 	int			count;
 
 	count = ft_strlen(c);
+	if (prnt->accuracy >= 0 && prnt->accuracy < count)
+		count = prnt->accuracy;
 	
 	if (FLAG_MINUS != (prnt->flags & FLAG_MINUS) && (FLAG_NULL != (prnt->flags & FLAG_NULL)))
 	{
@@ -37,10 +39,12 @@ static void		char_process_width(t_printf *prnt, char *c)
 			prnt->width--;
 		}
 	}
-
-	while (*c != '\0')
+	if (*c == NULL && (FORM_C == (prnt->flags & FORM_C)))
+		putchar_and_count(prnt, NULL);
+	while (*c != '\0' && prnt->accuracy != 0)
 	{
 		putchar_and_count(prnt, *c);
+		prnt->accuracy--;
 		c++;
 	}
 	if (FLAG_MINUS == (prnt->flags & FLAG_MINUS))
@@ -59,8 +63,9 @@ void			ft_char(t_printf *prnt)
 	char		*c;
 
 	c = malloc(sizeof(char));
-	*c = (unsigned char)va_arg(prnt->arg, unsigned int);
-	char_process_width(prnt, c);
+	*c = va_arg(prnt->arg, char);
+		//putchar_and_count(prnt , 256);
+		char_process_width(prnt, c);
 }
 
 void			ft_str(t_printf *prnt)
@@ -69,7 +74,9 @@ void			ft_str(t_printf *prnt)
 
 //c = va_arg(prnt->arg, ptrdiff_t);
 
-	c = va_arg(prnt->arg, char*);
-	char_process_width(prnt, c);
+	if ((c = va_arg(prnt->arg, char*)))
+		char_process_width(prnt, c);
+	else
+		putstr_and_count(prnt, "(null)");
 }
 

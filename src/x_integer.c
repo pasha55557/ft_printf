@@ -6,7 +6,7 @@
 /*   By: rsticks <rsticks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 17:57:23 by rsticks           #+#    #+#             */
-/*   Updated: 2019/12/11 17:59:38 by rsticks          ###   ########.fr       */
+/*   Updated: 2019/12/16 18:54:34 by rsticks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 char				*x_modificator(t_printf *prnt)
 {
 	char			*c;
-	long long int	ln;
+	unsigned long long int	ln;
 
 	ln = 0;
 	if (MOD_L == (prnt->flags & MOD_L))
 	{
 		ln = va_arg(prnt->arg, unsigned long int);
-		c = ft_dec_to((long long int)ln, 16, prnt);
+		c = ft_dec_to(ln, 16, prnt);
 	}
 	else if (MOD_LL == (prnt->flags & MOD_LL))
 	{
@@ -30,18 +30,18 @@ char				*x_modificator(t_printf *prnt)
 	}
 	else if (MOD_H == (prnt->flags & MOD_H))
 	{
-		ln = (short int)va_arg(prnt->arg, unsigned int);
-		c = ft_dec_to((long long int)ln, 16, prnt);
+		ln = (unsigned short int)va_arg(prnt->arg, unsigned int);
+		c = ft_dec_to(ln, 16, prnt);
 	}
 	else if (MOD_HH == (prnt->flags & MOD_HH))
 	{
-		ln = (char)va_arg(prnt->arg, unsigned int);
-		c = ft_dec_to((long long int)ln, 16, prnt);
+		ln = (unsigned char)va_arg(prnt->arg, unsigned int);
+		c = ft_dec_to(ln, 16, prnt);
 	}
 	else
 	{
 		ln = va_arg(prnt->arg, unsigned int);
-		c = ft_dec_to((long long int)ln, 16, prnt);
+		c = ft_dec_to(ln, 16, prnt);
 	}
 	return (c);
 }

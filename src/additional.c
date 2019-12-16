@@ -6,7 +6,7 @@
 /*   By: rsticks <rsticks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 15:18:06 by rsticks           #+#    #+#             */
-/*   Updated: 2019/12/16 15:29:17 by rsticks          ###   ########.fr       */
+/*   Updated: 2019/12/16 19:56:15 by rsticks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ char				*ft_dec_to(unsigned long long int d, int sys, t_printf *prnt)
 		i++;
 	}
 	i--;
-	s = malloc(sizeof(c));
+	s = malloc(sizeof(char) * i);
 	while (i >= 0)
 	{
 		s[j] = c[i];
@@ -116,10 +116,13 @@ void		process_width(t_printf *prnt, char *c)
 	count = 0;
 	count = ft_strlen(c);
 	acc = count;
+	if (c[0] == '-')
+		acc--;
 	if ((FLAG_PLUS == (prnt->flags & FLAG_PLUS) || FLAG_SPACE == (prnt->flags & FLAG_SPACE)) && (c[0] != '-'))
 		count++;
 	if (prnt->accuracy == 0 && *c == '0')
 	{
+		count--;
 		if (prnt->width == 0)
 			prnt->accuracy = -4;
 		else
@@ -129,7 +132,9 @@ void		process_width(t_printf *prnt, char *c)
 	{
 		prnt->accuracy -= acc;
 		if (prnt->accuracy > 0)
-			count += prnt->accuracy;	
+			count += prnt->accuracy;
+		else
+			prnt->accuracy = -2;
 	}
 	
 	if (FLAG_MINUS != (prnt->flags & FLAG_MINUS) && (FLAG_NULL != (prnt->flags & FLAG_NULL)))
@@ -172,11 +177,7 @@ void		process_width(t_printf *prnt, char *c)
 	{
 		if (*c == '-')
 			c++;
-		if (prnt->accuracy == -3)
-			putchar_and_count(prnt, ' ');
-		else if (prnt->accuracy == -4)
-			prnt->accuracy = 0;
-		else
+		if (prnt->accuracy > -3)
 			putchar_and_count(prnt, *c);
 		c++;
 	}
@@ -195,9 +196,11 @@ void		unsigned_process_width(t_printf *prnt, char *c)
 {
 	char	*ptr;
 	int		count;
+	int		acc;
 
 	ptr = c;
 	count = ft_strlen(c);
+	acc = count;
 	if (prnt->accuracy == 0 && *c == '0')
 	{
 		if (prnt->width == 0)
@@ -207,9 +210,11 @@ void		unsigned_process_width(t_printf *prnt, char *c)
 	}
 	if (prnt->accuracy >= 0)
 	{
-		prnt->accuracy -= count;
+		prnt->accuracy -= acc;
 		if (prnt->accuracy > 0)
-			count += prnt->accuracy;	
+			count += prnt->accuracy;
+		else
+			prnt->accuracy = -2;
 	}
 	if (((FLAG_SHARP == (prnt->flags & FLAG_SHARP)) || (FORM_P == (prnt->flags & FORM_P))) && ((*c != '0') || FORM_O == (prnt->flags & FORM_O)))
 	{

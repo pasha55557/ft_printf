@@ -6,7 +6,7 @@
 /*   By: rsticks <rsticks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/11 15:38:44 by rsticks           #+#    #+#             */
-/*   Updated: 2019/12/16 15:18:50 by rsticks          ###   ########.fr       */
+/*   Updated: 2019/12/16 18:28:09 by rsticks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,9 @@ void			ft_str(t_printf *prnt)
 
 //c = va_arg(prnt->arg, ptrdiff_t);
 
-	if ((c = va_arg(prnt->arg, char*)))
+	if (!(c = va_arg(prnt->arg, char*)))
+		c = ft_strdup("(null)");
 		char_process_width(prnt, c);
-	else
-		putstr_and_count(prnt, "(null)");
+		//putstr_and_count(prnt, "(null)");
 }
 

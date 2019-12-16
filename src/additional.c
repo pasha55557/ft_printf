@@ -6,7 +6,7 @@
 /*   By: rsticks <rsticks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 15:18:06 by rsticks           #+#    #+#             */
-/*   Updated: 2019/12/14 19:45:04 by rsticks          ###   ########.fr       */
+/*   Updated: 2019/12/16 15:29:17 by rsticks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,10 +110,12 @@ void		process_width(t_printf *prnt, char *c)
 {
 	char	*ptr;
 	int		count;
+	int		acc;
 
 	ptr = c;
 	count = 0;
 	count = ft_strlen(c);
+	acc = count;
 	if ((FLAG_PLUS == (prnt->flags & FLAG_PLUS) || FLAG_SPACE == (prnt->flags & FLAG_SPACE)) && (c[0] != '-'))
 		count++;
 	if (prnt->accuracy == 0 && *c == '0')
@@ -125,7 +127,7 @@ void		process_width(t_printf *prnt, char *c)
 	}
 	if (prnt->accuracy >= 0)
 	{
-		prnt->accuracy -= count;
+		prnt->accuracy -= acc;
 		if (prnt->accuracy > 0)
 			count += prnt->accuracy;	
 	}
@@ -145,11 +147,16 @@ void		process_width(t_printf *prnt, char *c)
 	{
 		if (c[0] != '-' || c[0] == 0)
 			putchar_and_count(prnt, '+');
+	}
+	if (FLAG_SPACE == (prnt->flags & FLAG_SPACE) && (FLAG_PLUS != (prnt->flags & FLAG_PLUS)))
+	{
+		if (c[0] != '-' || c[0] == 0)
+			putchar_and_count(prnt, ' ');
+	}
 	while (prnt->accuracy > 0)
 	{
 		putchar_and_count(prnt, '0');
 		prnt->accuracy--;
-	}
 	}
 		
 	if (FLAG_NULL == (prnt->flags & FLAG_NULL) && FLAG_MINUS != (prnt->flags & FLAG_MINUS))
@@ -160,11 +167,6 @@ void		process_width(t_printf *prnt, char *c)
 			putchar_and_count(prnt, '0');
 			prnt->width--;
 		}
-	}
-	else if (FLAG_SPACE == (prnt->flags & FLAG_SPACE) && (FLAG_PLUS != (prnt->flags & FLAG_PLUS)))
-	{
-		if (c[0] != '-' || c[0] == 0)
-			putchar_and_count(prnt, ' ');
 	}
 	while (*c != '\0')
 	{

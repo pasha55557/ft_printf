@@ -6,7 +6,7 @@
 /*   By: rsticks <rsticks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/11 15:38:44 by rsticks           #+#    #+#             */
-/*   Updated: 2019/12/14 18:25:21 by rsticks          ###   ########.fr       */
+/*   Updated: 2019/12/16 15:18:50 by rsticks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void		char_process_width(t_printf *prnt, char *c)
 	int			count;
 
 	count = ft_strlen(c);
-	if (*c == NULL && (FORM_C == (prnt->flags & FORM_C)))
+	if (*c == (int)NULL && (FORM_C == (prnt->flags & FORM_C)))
 		count++;
 	if (prnt->accuracy >= 0 && prnt->accuracy < count)
 		count = prnt->accuracy;
@@ -41,8 +41,8 @@ static void		char_process_width(t_printf *prnt, char *c)
 			prnt->width--;
 		}
 	}
-	if (*c == NULL && (FORM_C == (prnt->flags & FORM_C)))
-		putchar_and_count(prnt, NULL);
+	if (*c == (int)NULL && (FORM_C == (prnt->flags & FORM_C)))
+		putchar_and_count(prnt, (char)NULL);
 	while (*c != '\0' && prnt->accuracy != 0)
 	{
 		putchar_and_count(prnt, *c);
@@ -65,7 +65,7 @@ void			ft_char(t_printf *prnt)
 	char		*c;
 
 	c = malloc(sizeof(char));
-	*c = va_arg(prnt->arg, char);
+	*c = (char)va_arg(prnt->arg, int);
 		//putchar_and_count(prnt , 256);
 		char_process_width(prnt, c);
 }

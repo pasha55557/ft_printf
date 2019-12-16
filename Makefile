@@ -6,7 +6,7 @@
 #    By: rsticks <rsticks@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/29 15:59:04 by rsticks           #+#    #+#              #
-#    Updated: 2019/12/14 17:35:26 by rsticks          ###   ########.fr        #
+#    Updated: 2019/12/16 15:10:30 by rsticks          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ OBJECTS_PATH = ./objs/
 OBJECTS_FILES = $(SRCS_FILES:.c=.o)
 OBJECTS = $(addprefix $(OBJECTS_PATH), $(OBJECTS_FILES))
 
-COMPILE = gcc -Wall -Wextra
+COMPILE = gcc -Wall -Wextra -Werror
 
 INCLUDES = -I./includes -I./libs/libft
 HEADERS_PATH = ./includes/

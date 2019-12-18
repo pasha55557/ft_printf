@@ -6,7 +6,7 @@
 /*   By: rsticks <rsticks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 15:57:15 by rsticks           #+#    #+#             */
-/*   Updated: 2019/12/14 16:39:30 by rsticks          ###   ########.fr       */
+/*   Updated: 2019/12/18 17:20:25 by rsticks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,10 @@ static void					init_prnt(t_printf *prnt)
 
 void					putchar_and_count(t_printf *prnt, char c)
 {
-		prnt->buff[prnt->count] = c;
-		prnt->count++;	
+	if (prnt->count % 255 == 0 && prnt->count != 0)
+		write(1, prnt->buff, 255);
+	prnt->buff[prnt->count % 255] = c;
+	prnt->count++;
 }
 
 void		parser(t_printf *prnt)
@@ -79,6 +81,10 @@ int	ft_printf(const char *format, ...)
 	prnt->buff = (char*)malloc(sizeof(char) * 255);
 	va_start(prnt->arg, format);
 	parser(prnt);
-	write(1, prnt->buff, prnt->count);
+	if (prnt->count % 255 == 0 && prnt->count != 0)
+		write(1, prnt->buff, 255);
+	else
+		write(1, prnt->buff, (prnt->count % 255));
+	ft_strdel(&prnt->buff);
 	return(prnt->count);
 }

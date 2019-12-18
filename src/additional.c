@@ -6,7 +6,7 @@
 /*   By: rsticks <rsticks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 15:18:06 by rsticks           #+#    #+#             */
-/*   Updated: 2019/12/16 19:56:15 by rsticks          ###   ########.fr       */
+/*   Updated: 2019/12/18 18:07:10 by rsticks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,11 @@
 
 void					putstr_and_count(t_printf *prnt, char *c)
 {
+	if (prnt->count % 255 == 0 && prnt->count != 0)
+		write(1, prnt->buff, 255);
 	while(*c != '\0')
 	{
-		prnt->buff[prnt->count] = *c;
+		prnt->buff[prnt->count % 255] = *c;
 		prnt->count++;
 		c++;
 	}
@@ -52,7 +54,7 @@ char				*ft_dec_to(unsigned long long int d, int sys, t_printf *prnt)
 	if (FORM_X == (prnt->flags & FORM_X))
 		otc = 7;
 	i = 0;
-	c = malloc(sizeof(char) * 20);
+	c = malloc(sizeof(char) * 30);
 	if (d == 0)
 	{
 		c[i] = '0';
@@ -74,7 +76,9 @@ char				*ft_dec_to(unsigned long long int d, int sys, t_printf *prnt)
 		i--;
 		j++;
 	}
+	s[j] = '\0';
 	free(c);
+//	printf("in dec_to %s\n", s);
 	return (s);
 }
 
@@ -210,15 +214,19 @@ void		unsigned_process_width(t_printf *prnt, char *c)
 	}
 	if (prnt->accuracy >= 0)
 	{
+		if ((FORM_O == (prnt->flags & FORM_O) && (FLAG_SHARP == (prnt->flags & FLAG_SHARP))) && c[0] != '0')
+			prnt->accuracy--;
 		prnt->accuracy -= acc;
 		if (prnt->accuracy > 0)
 			count += prnt->accuracy;
 		else
 			prnt->accuracy = -2;
 	}
-	if (((FLAG_SHARP == (prnt->flags & FLAG_SHARP)) || (FORM_P == (prnt->flags & FORM_P))) && ((*c != '0') || FORM_O == (prnt->flags & FORM_O)))
+	//printf("FLAG = %c", c[0]);
+	if ((FLAG_SHARP == (prnt->flags & FLAG_SHARP) && ((*c != '0') || FORM_O == (prnt->flags & FORM_O))) || (FORM_P == (prnt->flags & FORM_P)))
 	{
-		count++;
+		if ((!(FORM_O == (prnt->flags & FORM_O) && (c[0] == '0'))) || (prnt->accuracy == -4))
+			count++;
 		if (FORM_x == (prnt->flags & FORM_x) || (FORM_P == (prnt->flags & FORM_P)))
 			count++;
 		if (FORM_X == (prnt->flags & FORM_X))
@@ -235,9 +243,10 @@ void		unsigned_process_width(t_printf *prnt, char *c)
 		}
 	}
 
-	if (((FLAG_SHARP == (prnt->flags & FLAG_SHARP)) || (FORM_P == (prnt->flags & FORM_P))) && ((*c != '0') || FORM_O == (prnt->flags & FORM_O)))
+	if ((FLAG_SHARP == (prnt->flags & FLAG_SHARP) && ((*c != '0') || FORM_O == (prnt->flags & FORM_O))) || (FORM_P == (prnt->flags & FORM_P)))
 	{
-		putchar_and_count(prnt, '0');
+		if ((!(FORM_O == (prnt->flags & FORM_O) && (c[0] == '0'))) || (prnt->accuracy == -4))
+			putchar_and_count(prnt, '0');
 		if (FORM_x == (prnt->flags & FORM_x) || (FORM_P == (prnt->flags & FORM_P)))
 			putchar_and_count(prnt, 'x');
 		if (FORM_X == (prnt->flags & FORM_X))
@@ -263,14 +272,15 @@ void		unsigned_process_width(t_printf *prnt, char *c)
 
 	while (*c != '\0')
 	{
-		if (prnt->accuracy == -3)
+	if (prnt->accuracy == -3 && (!(FORM_O == (prnt->flags & FORM_O) && c[0] == '0' && FLAG_SHARP == (prnt->flags & FLAG_SHARP))))
 			putchar_and_count(prnt, ' ');
-		else if (prnt->accuracy == -4)
-			prnt->accuracy = 0;
-		else
-			putchar_and_count(prnt, *c);
-		c++;
+	else if (prnt->accuracy == -4)
+		prnt->accuracy = 0;
+	else
+		putchar_and_count(prnt, *c);
+	c++;
 	}
+	
 	if (FLAG_MINUS == (prnt->flags & FLAG_MINUS))
 	{
 		prnt->width -= count;
@@ -280,5 +290,4 @@ void		unsigned_process_width(t_printf *prnt, char *c)
 			prnt->width--;
 		}
 	}
-	//free(ptr);
 }

@@ -2,11 +2,11 @@
 #                                                                              #
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
+#                                                     +:mka+ +:+         +:+      #
 #    By: rsticks <rsticks@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/29 15:59:04 by rsticks           #+#    #+#              #
-#    Updated: 2019/12/16 18:35:21 by rsticks          ###   ########.fr        #
+#    Updated: 2019/12/18 17:22:13 by rsticks          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ SRCS = $(addprefix $(SRCS_PATH), $(SRCS_FILES))
 
 LIB_SRCS_PATH = ./libft/
 LIB_SRCS_FILES = ft_strcmp.c ft_putnbr.c ft_putchar_fd.c ft_atoi.c ft_itoa.c ft_strlen.c ft_strnew.c \
-				ft_memset.c ft_strdup.c
+				ft_memset.c ft_strdup.c ft_strdel.c
 LIB_SRCS = $(addprefix $(LIB_SRCS_PATH), $(LIB_SRCS_FILES))
 
 LIB_OBJECTS_PATH = ./objs/
@@ -30,7 +30,7 @@ OBJECTS_PATH = ./objs/
 OBJECTS_FILES = $(SRCS_FILES:.c=.o)
 OBJECTS = $(addprefix $(OBJECTS_PATH), $(OBJECTS_FILES))
 
-COMPILE = gcc -Wall -Wextra -Werror
+COMPILE = gcc -Wall -Wextra -O3
 
 INCLUDES = -I./includes -I./libs/libft
 HEADERS_PATH = ./includes/

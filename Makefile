@@ -14,12 +14,13 @@ NAME = libftprintf.a
 
 SRCS_PATH = ./src/
 SRCS_FILES = main.c ft_printf.c parser.c integer.c transform.c \
-			additional.c u_integer.c o_integer.c x_integer.c char.c
+			additional.c u_integer.c o_integer.c x_integer.c char.c \
+			floats.c floats2.c float_main.c
 SRCS = $(addprefix $(SRCS_PATH), $(SRCS_FILES))
 
 LIB_SRCS_PATH = ./libft/
 LIB_SRCS_FILES = ft_strcmp.c ft_putnbr.c ft_putchar_fd.c ft_atoi.c ft_itoa.c ft_strlen.c ft_strnew.c \
-				ft_memset.c ft_strdup.c ft_strdel.c
+				ft_memset.c ft_strdup.c ft_strdel.c ft_bzero.c ft_memalloc.c ft_memcpy.c
 LIB_SRCS = $(addprefix $(LIB_SRCS_PATH), $(LIB_SRCS_FILES))
 
 LIB_OBJECTS_PATH = ./objs/

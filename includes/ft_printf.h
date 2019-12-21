@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rsticks <rsticks@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tjonella <tjonella@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 14:59:55 by rsticks           #+#    #+#             */
-/*   Updated: 2019/12/14 16:38:10 by rsticks          ###   ########.fr       */
+/*   Updated: 2019/12/21 20:15:26 by tjonella         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,18 @@ typedef	struct		s_printf
 	t_int			st_int;
 }					t_printf;
 
+union				u_floats
+{
+	long double				f;
+	struct					s_bits
+	{
+		unsigned long int	mant : 64;
+		unsigned int		exp : 15;
+		unsigned int		sign : 1;
+	}						t_bits;
+
+}							t_floats; 
+
 void				putstr_and_count(t_printf *prnt, char *c);
 int					ft_udigits_count(unsigned long long int n);
 char				*ft_ulong_itoa(unsigned long long int n);
@@ -116,5 +128,24 @@ int					width(t_printf *prnt);
 void				putchar_and_count(t_printf *prnt, char c);
 void				if_procent(t_printf *prnt);
 void				parser(t_printf *prnt);
+
+int		ft_abs(int n);
+void	mult_flt(int i, char *local);
+void	add_to_flt(char *flt, int i, char *local, int exp);
+void	bias_digit(char *flt, int i, int exp);
+void	count_flt(char *flt, int exp, int bits);
+char	*print_flt(int bits);
+void	itg_mult(char *local, int i);
+void	add_func(char *itg, int i);
+char	*count_itg(int bits);
+void	rounding_int_aft_flt(char *res, int i);
+void	rounding_flt_4(char *res, int i, int acc);
+void	rounding_flt_3(char *res, char *flt, int i, int j, t_printf *prnt);
+char	*rounding_flt_2(char *itg, char *flt, t_printf *prnt);
+char	*rounding_flt(char *itg, char *flt, t_printf *prnt);
+char	*ft_flt(long double d, t_printf *prnt);
+
+void	ft_flt_get(t_printf *prnt);
+char	*modif_flt(t_printf *prnt);
 
 #endif

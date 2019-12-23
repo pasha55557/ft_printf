@@ -6,7 +6,7 @@
 /*   By: rsticks <rsticks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 15:18:06 by rsticks           #+#    #+#             */
-/*   Updated: 2019/12/18 18:07:10 by rsticks          ###   ########.fr       */
+/*   Updated: 2019/12/19 15:37:43 by rsticks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ char				*ft_dec_to(unsigned long long int d, int sys, t_printf *prnt)
 	}
 	s[j] = '\0';
 	free(c);
-//	printf("in dec_to %s\n", s);
+
 	return (s);
 }
 

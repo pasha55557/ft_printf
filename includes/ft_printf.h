@@ -6,7 +6,7 @@
 /*   By: rsticks <rsticks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 14:59:55 by rsticks           #+#    #+#             */
-/*   Updated: 2019/12/14 16:38:10 by rsticks          ###   ########.fr       */
+/*   Updated: 2019/12/18 18:56:40 by rsticks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ typedef	struct		s_printf
 	t_int			st_int;
 }					t_printf;
 
+void				char_process_width(t_printf *prnt, char *c);
 void				putstr_and_count(t_printf *prnt, char *c);
 int					ft_udigits_count(unsigned long long int n);
 char				*ft_ulong_itoa(unsigned long long int n);

@@ -6,13 +6,13 @@
 /*   By: rsticks <rsticks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/11 15:38:44 by rsticks           #+#    #+#             */
-/*   Updated: 2019/12/16 18:28:09 by rsticks          ###   ########.fr       */
+/*   Updated: 2019/12/18 18:56:31 by rsticks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-static void		char_process_width(t_printf *prnt, char *c)
+void		char_process_width(t_printf *prnt, char *c)
 {
 	int			count;
 

@@ -6,7 +6,7 @@
 /*   By: rsticks <rsticks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 18:56:00 by rsticks           #+#    #+#             */
-/*   Updated: 2019/12/18 18:03:40 by rsticks          ###   ########.fr       */
+/*   Updated: 2019/12/23 13:22:28 by rsticks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,12 @@ int	main()
 	n = malloc(sizeof(int) * 9);
 	//n2 = malloc(sizeof(int)); //"%.2s is a string\n", "this" (u_int64_t)22337203685477
 	//write(1, 256, 1); "%-32p%-32p%-32p%-32p%-32p%-32p%-32p%-32p%-32p%-32p%-32p%-32p\n", n, n, n, n, n, n, n, n, n, n, n, n
-	ft_i = printf("%5p\n", 0);
-	//printf("\n my printf\n"); 
+	//ft_i = printf("%15.10k\n");
+	ft_i = printf("% f\n", 5.222); 
 	//ft_i = printf("%d\n", *n);
 	//ft_i = printf("(%5i)\n", d);
 	//printf("%e",);
-	j = ft_printf("%5p\n", 0); 
+	j = ft_printf("%X\n", -42); 
 	//j = ft_printf("%d\n", *n2);
 	printf("\ncount printf     (%d)\n", ft_i);
 	printf("count ft_printf  (%d)\n", j);

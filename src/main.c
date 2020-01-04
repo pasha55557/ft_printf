@@ -6,12 +6,13 @@
 /*   By: tjonella <tjonella@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 18:56:00 by rsticks           #+#    #+#             */
-/*   Updated: 2019/12/21 21:21:10 by tjonella         ###   ########.fr       */
+/*   Updated: 2020/01/05 00:05:13 by tjonella         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include "../includes/ft_printf.h"
+#include <float.h>
 
 int	main()
 {
@@ -19,9 +20,9 @@ int	main()
 	int 	j;
 	float	f;
 
-	f = 1234.123;
-	ft_i = printf("%f\n", f);
-	j = ft_printf("%f", f);
+	f = 23.00041;
+	ft_i = printf("%.16500Lf\n\n", LDBL_MIN);
+	j = ft_printf("%.16500Lf", LDBL_MIN);
 	printf("\ncount printf     (%d)\n", ft_i);
 	printf("count ft_printf  (%d)\n", j);
 	return(0);

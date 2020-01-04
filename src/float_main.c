@@ -6,7 +6,7 @@
 /*   By: tjonella <tjonella@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/21 19:31:07 by tjonella          #+#    #+#             */
-/*   Updated: 2019/12/21 23:13:09 by tjonella         ###   ########.fr       */
+/*   Updated: 2020/01/04 18:47:05 by tjonella         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,23 +15,24 @@
 char	*modif_flt(t_printf *prnt)
 {
 	char			*c;
-	long double 	ln;
+	long double 	lln;
+	double			ln;
 
 	ln = 0;
 	if (MOD_L == (prnt->flags & MOD_L))
 	{
 		ln = va_arg(prnt->arg, double);
-		c = ft_flt((long double)ln, prnt);
+		c = ft_flt((double)ln, prnt);
 	}
 	else if (MOD_LLL == (prnt->flags & MOD_LLL))
 	{
-		ln = va_arg(prnt->arg, long double);
-		c = ft_flt((long double)ln, prnt);
+		lln = va_arg(prnt->arg, long double);
+		c = ft_flt((long double)lln, prnt);
 	}
 	else
 	{
 		ln = va_arg(prnt->arg, double);
-		c = ft_flt((long double)ln, prnt);
+		c = ft_flt((double)ln, prnt);
 	}
 	return (c);
 }

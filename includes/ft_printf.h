@@ -6,7 +6,7 @@
 /*   By: tjonella <tjonella@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 14:59:55 by rsticks           #+#    #+#             */
-/*   Updated: 2020/01/04 22:12:58 by tjonella         ###   ########.fr       */
+/*   Updated: 2020/01/06 02:51:34 by tjonella         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,5 +149,7 @@ void	ft_flt_get(t_printf *prnt);
 char	*modif_flt(t_printf *prnt);
 char	*ft_strrev(char *str);
 void	first_bias(char *flt, int bits, int exp);
+char	*ft_if_negative(long double d, char *res);
+char	*big_int(char *itg, t_printf *prnt);
 
 #endif

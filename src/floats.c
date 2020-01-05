@@ -6,11 +6,30 @@
 /*   By: tjonella <tjonella@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 12:04:21 by tjonella          #+#    #+#             */
-/*   Updated: 2020/01/04 23:33:07 by tjonella         ###   ########.fr       */
+/*   Updated: 2020/01/06 02:24:27 by tjonella         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
+
+char	*ft_strcat(char *dst, const char *append)
+{
+	int i;
+	int j;
+
+	i = 0;
+	j = 0;
+	while (dst[i] != '\0')
+		i++;
+	while (append[j] != '\0')
+	{
+		dst[i] = append[j];
+		j++;
+		i++;
+	}
+	dst[i] = append[j];
+	return (dst);
+}
 
 char	*ft_strrev(char *str)
 {
@@ -185,6 +204,28 @@ char	*rounding_flt_2(char *itg, char *flt, t_printf *prnt)
 	return (res);
 }
 
+char	*big_int(char *itg, t_printf *prnt)
+{
+	char	*res;
+	int		i;
+	int		acc;
+
+	i = ft_strlen(itg);
+	if (prnt->accuracy == -2)
+		prnt->accuracy = 6;
+	acc = prnt->accuracy;
+	res = (char *)ft_memalloc(i + prnt->accuracy + 2);
+	ft_memcpy(res, ft_strrev(itg), i);
+	res[i] = prnt->accuracy != 0 ? '.' : 0;
+	i++;
+	while (acc--)
+	{
+		res[i] = '0';
+		i++;
+	}
+	free(itg);
+	return (res);
+}
 char	*rounding_flt(char *itg, char *flt, t_printf *prnt)
 {
 	int		i;
@@ -193,11 +234,13 @@ char	*rounding_flt(char *itg, char *flt, t_printf *prnt)
 	i = 0;
 	res = NULL;
 	if (!flt)
-		return (itg);
+	{
+		res = big_int(itg, prnt);
+		return (res);
+	}
 	while (flt[i])
 		i++;
-	i--;
-	if (prnt->accuracy == 0 && flt[i] > '5')
+	if (prnt->accuracy == 0 && flt[--i] > '5')
 		itg[0]++;
 	else if (prnt->accuracy == 0 && flt[i] == '5')
 	{
@@ -208,20 +251,32 @@ char	*rounding_flt(char *itg, char *flt, t_printf *prnt)
 	}
 	else
 		res = rounding_flt_2(itg, flt, prnt);
-	free(flt);
 	ft_strrev(itg);
 	return (res ? res : itg);
 }
 
+char	*ft_if_negative(long double d, char *res)
+{
+	char	*res_fin;
+
+	res_fin = res;
+	if (d < 0)
+	{
+		res_fin = (char *)ft_memalloc(ft_strlen(res) + 2);
+		res_fin[0] = '-';
+		ft_strcat(res_fin, res);
+		free(res);
+	}
+	return (res_fin);
+}
+
 char	*ft_flt(long double d, t_printf *prnt)
 {
-	int		i;
 	char	*itg;
 	char	*flt;
 	int		x;
 	char	*res;
 
-	i = 0;
 	t_floats.f = d;
 	flt = NULL;
 	x = t_floats.t_bits.exp - 16383;
@@ -239,9 +294,6 @@ char	*ft_flt(long double d, t_printf *prnt)
 		flt = print_flt(63 - x);
 	}
 	res = rounding_flt(itg, flt, prnt);
-	if (d < 0)
-		write(1, "-", 1);
-	if (!ft_strcmp(res, "0"))
-		write(1, "0", 1);
+	res = ft_if_negative(d, res);
 	return (res);
 }

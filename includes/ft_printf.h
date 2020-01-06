@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tjonella <tjonella@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rsticks <rsticks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 14:59:55 by rsticks           #+#    #+#             */
-/*   Updated: 2020/01/06 02:51:34 by tjonella         ###   ########.fr       */
+/*   Updated: 2020/01/06 16:16:16 by rsticks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ union				u_floats
 
 }							t_floats; 
 
+void				process_width_for_float(t_printf *prnt, char *c);
 void				putstr_and_count(t_printf *prnt, char *c);
 int					ft_udigits_count(unsigned long long int n);
 char				*ft_ulong_itoa(unsigned long long int n);

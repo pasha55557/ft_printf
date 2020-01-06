@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tjonella <tjonella@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rsticks <rsticks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 18:56:00 by rsticks           #+#    #+#             */
-/*   Updated: 2020/01/06 02:22:40 by tjonella         ###   ########.fr       */
+/*   Updated: 2020/01/06 18:59:17 by rsticks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,13 @@ int	main()
 	int 	ft_i;
 	int 	j;
 	float	f;
+	int		d;
+	char	*format = "% #-4.f\n";
 
-	f = 23.00041;
-	ft_i = printf("%.f\n\n", 573.924);
-	j = ft_printf("%.f", 573.924);
+	d = 54;
+	f = 42.5;
+	ft_i = printf(format, f);
+	j = ft_printf(format, f);
 	printf("\ncount printf     (%d)\n", ft_i);
 	printf("count ft_printf  (%d)\n", j);
 	return(0);

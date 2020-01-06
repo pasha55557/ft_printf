@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   float_main.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tjonella <tjonella@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rsticks <rsticks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/21 19:31:07 by tjonella          #+#    #+#             */
-/*   Updated: 2020/01/04 18:47:05 by tjonella         ###   ########.fr       */
+/*   Updated: 2020/01/06 17:13:21 by rsticks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,6 @@ void	ft_flt_get(t_printf *prnt)
 	char	*c;
 
 	c = modif_flt(prnt);
-	process_width(prnt, c);
+	//process_width(prnt, c);
+	process_width_for_float(prnt, c);
 }

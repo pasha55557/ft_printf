@@ -15,7 +15,7 @@ NAME = libftprintf.a
 SRCS_PATH = ./src/
 SRCS_FILES = main.c ft_printf.c parser.c integer.c transform.c \
 			additional.c u_integer.c o_integer.c x_integer.c char.c \
-			floats.c floats2.c float_main.c
+			floats.c floats2.c float_main.c additional2.c
 SRCS = $(addprefix $(SRCS_PATH), $(SRCS_FILES))
 
 LIB_SRCS_PATH = ./libft/

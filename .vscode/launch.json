@@ -9,7 +9,7 @@
 			"name": "(lldb) Launch",
 			"type": "cppdbg",
 			"request": "launch",
-			"program": "/Users/tjonella/Desktop/pasha/ft_printf",
+			"program": "/Users/rsticks/Desktop/42/ft_printf/ft_printf",
 			"args": [],
 			"stopAtEntry": false,
 			"cwd": "${workspaceFolder}",

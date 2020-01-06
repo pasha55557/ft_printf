@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tjonella <tjonella@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rsticks <rsticks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 18:42:14 by rsticks           #+#    #+#             */
-/*   Updated: 2019/12/21 23:13:30 by tjonella         ###   ########.fr       */
+/*   Updated: 2020/01/06 17:45:55 by rsticks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void					form(t_printf *prnt)
 	uint32_t tmp;
 
 	tmp = prnt->flags;
-	if (*prnt->format == 'd' || *prnt->format == 'i')
+	if (*prnt->format == 'd' || *prnt->format == 'i' || *prnt->format == 'D')
 		prnt->flags |= FORM_D_I;
 	if (*prnt->format == 'u')
 		prnt->flags |= FORM_U;
@@ -116,8 +116,6 @@ int					accuracy(t_printf *prnt)
 	
 	if (*prnt->format == '.')
 	{
-		if (FLAG_NULL == (prnt->flags & FLAG_NULL))
-			prnt->flags -= FLAG_NULL;
 		prnt->format++;
 		prnt->accuracy = ft_atoi_nb(prnt->format, &tmp);
 		prnt->format += tmp;
@@ -238,11 +236,9 @@ void		if_procent(t_printf *prnt)
 				continue;
 			}
 		}
-		//else
-		//{
+		if (*prnt->format != 'l' && *prnt->format != 'L' && *prnt->format != 'h')
 			putchar_and_count(prnt, *prnt->format);
-			prnt->format++;
-		//}
+		prnt->format++;
 	}
 	prnt->flags |= PRO_TRUE;
 	if (!(FORM_TRUE == (prnt->flags & FORM_TRUE)) && (prnt->width != 0) && (FLAG_MINUS != (prnt->flags & FLAG_MINUS)))

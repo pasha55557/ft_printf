@@ -6,7 +6,7 @@
 /*   By: rsticks <rsticks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 15:18:06 by rsticks           #+#    #+#             */
-/*   Updated: 2019/12/18 18:07:10 by rsticks          ###   ########.fr       */
+/*   Updated: 2020/01/06 17:02:35 by rsticks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,8 @@ void		process_width(t_printf *prnt, char *c)
 	count = 0;
 	count = ft_strlen(c);
 	acc = count;
+	if (FLAG_NULL == (prnt->flags & FLAG_NULL) && (prnt->accuracy >= 0))
+		prnt->flags -= FLAG_NULL;
 	if (c[0] == '-')
 		acc--;
 	if ((FLAG_PLUS == (prnt->flags & FLAG_PLUS) || FLAG_SPACE == (prnt->flags & FLAG_SPACE)) && (c[0] != '-'))
@@ -205,6 +207,8 @@ void		unsigned_process_width(t_printf *prnt, char *c)
 	ptr = c;
 	count = ft_strlen(c);
 	acc = count;
+	if (FLAG_NULL == (prnt->flags & FLAG_NULL) && (prnt->accuracy >= 0))
+		prnt->flags -= FLAG_NULL;
 	if (prnt->accuracy == 0 && *c == '0')
 	{
 		if (prnt->width == 0)

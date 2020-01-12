@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rsticks <rsticks@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tjonella <tjonella@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 14:59:55 by rsticks           #+#    #+#             */
-/*   Updated: 2020/01/06 16:16:16 by rsticks          ###   ########.fr       */
+/*   Updated: 2020/01/12 19:31:46 by tjonella         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,18 @@
 # define MODS_TRUE (1 << 27)
 # define PRO_TRUE (1 << 28)
 # define DOUBLE_PRO (1 << 29)
+
+#define DBL_INF 0x7FF0000000000000
+#define DBL_NINF 0xFFF0000000000000
+#define DBL_NAN 0x7FF0000000100000
+#define DBL_PZERO 0x0000000000000000
+#define DBL_NZERO 0x8000000000000000
+
+#define LDBL_INF 0x7FFF
+#define LDBL_NINF 0xFFFF0000000000000000L
+#define LDBL_NAN 0x7FFF0000000001000000L
+#define LDBL_PZERO 0x00000000000000000000L
+#define LDBL_NZERO 0x80000000000000000000L
 
 typedef struct		s_int
 {
@@ -150,7 +162,8 @@ void	ft_flt_get(t_printf *prnt);
 char	*modif_flt(t_printf *prnt);
 char	*ft_strrev(char *str);
 void	first_bias(char *flt, int bits, int exp);
-char	*ft_if_negative(long double d, char *res);
+char	*ft_if_negative(char *res);
 char	*big_int(char *itg, t_printf *prnt);
+char	*not_num(char *c, t_printf *prnt);
 
 #endif

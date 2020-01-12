@@ -6,7 +6,7 @@
 /*   By: tjonella <tjonella@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 12:04:21 by tjonella          #+#    #+#             */
-/*   Updated: 2020/01/06 02:24:27 by tjonella         ###   ########.fr       */
+/*   Updated: 2020/01/12 19:08:46 by tjonella         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -246,7 +246,7 @@ char	*rounding_flt(char *itg, char *flt, t_printf *prnt)
 	{
 		while ((i + 1) && flt[i] != '0')
 			i--;
-		if (i >= -1)
+		if (i > -1)
 			itg[0]++;
 	}
 	else
@@ -255,12 +255,12 @@ char	*rounding_flt(char *itg, char *flt, t_printf *prnt)
 	return (res ? res : itg);
 }
 
-char	*ft_if_negative(long double d, char *res)
+char	*ft_if_negative(char *res)
 {
 	char	*res_fin;
 
 	res_fin = res;
-	if (d < 0)
+	if (t_floats.t_bits.sign == 1)
 	{
 		res_fin = (char *)ft_memalloc(ft_strlen(res) + 2);
 		res_fin[0] = '-';
@@ -269,6 +269,7 @@ char	*ft_if_negative(long double d, char *res)
 	}
 	return (res_fin);
 }
+
 
 char	*ft_flt(long double d, t_printf *prnt)
 {
@@ -294,6 +295,6 @@ char	*ft_flt(long double d, t_printf *prnt)
 		flt = print_flt(63 - x);
 	}
 	res = rounding_flt(itg, flt, prnt);
-	res = ft_if_negative(d, res);
+	res = ft_if_negative(res);
 	return (res);
 }

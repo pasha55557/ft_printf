@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tjonella <tjonella@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rsticks <rsticks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 18:56:00 by rsticks           #+#    #+#             */
-/*   Updated: 2020/01/12 19:20:25 by tjonella         ###   ########.fr       */
+/*   Updated: 2020/01/16 14:56:47 by rsticks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ int	main()
 	double	*f;
 	long	l_f;
 	int		d;
-	char	*format = "%f\n";
+	char	*format = "%+6f\n";
 
 	d = 54;
-	l_f = DBL_INF;
+	l_f = DBL_NAN;
 	f = (double *)&l_f;
 	ft_i = printf(format, *f);
 	j = ft_printf(format, *f);

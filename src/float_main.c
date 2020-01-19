@@ -6,7 +6,7 @@
 /*   By: tjonella <tjonella@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/21 19:31:07 by tjonella          #+#    #+#             */
-/*   Updated: 2020/01/19 17:50:34 by tjonella         ###   ########.fr       */
+/*   Updated: 2020/01/19 18:48:24 by tjonella         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,15 @@
 
 char	*not_num(char *c, t_printf *prnt)
 {
-	if (t_floats.t_bits.exp == 32767 && t_floats.t_bits.sign == 0 && t_floats.t_bits.mant == 1UL << 63)
+	if (t_floats.t_bits.exp == 32767 && t_floats.t_bits.sign == 0 && \
+		t_floats.t_bits.mant == 1UL << 63)
 	{
 		c = "inf";
 		prnt->flags &= 7;
 		prnt->accuracy = -2;
 	}
-	else if (t_floats.t_bits.exp == 32767 && t_floats.t_bits.sign == 1 && t_floats.t_bits.mant == 1UL << 63)
+	else if (t_floats.t_bits.exp == 32767 && t_floats.t_bits.sign == 1 && \
+	t_floats.t_bits.mant == 1UL << 63)
 	{
 		prnt->flags &= 7;
 		c = "-inf";
@@ -38,7 +40,7 @@ char	*not_num(char *c, t_printf *prnt)
 char	*modif_flt(t_printf *prnt)
 {
 	char			*c;
-	long double 	lln;
+	long double		lln;
 	double			ln;
 
 	ln = 0;
@@ -68,6 +70,5 @@ void	ft_flt_get(t_printf *prnt)
 	char	*c;
 
 	c = modif_flt(prnt);
-	//process_width(prnt, c);
 	process_width_for_float(prnt, c);
 }

@@ -6,29 +6,11 @@
 /*   By: tjonella <tjonella@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/21 18:58:28 by tjonella          #+#    #+#             */
-/*   Updated: 2020/01/06 02:51:30 by tjonella         ###   ########.fr       */
+/*   Updated: 2020/01/19 18:57:45 by tjonella         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
-
-int		ft_abs(int n)
-{
-	return (n < 0 ? -n : n);
-}
-
-void	first_bias(char *flt, int bits, int exp)
-{
-	int		i;
-
-	i = exp - 1;
-	bits = ft_abs(t_floats.t_bits.exp - 16383 + bits - 63);
-	while ((i + 1) && !flt[i])
-		i--;
-	bits = bits - i - 1;
-	while (bits--)
-		flt[++i] += '0';
-}
 
 void	mult_flt(int i, char *local)
 {

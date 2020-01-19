@@ -6,7 +6,7 @@
 /*   By: tjonella <tjonella@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 14:59:55 by rsticks           #+#    #+#             */
-/*   Updated: 2020/01/12 19:31:46 by tjonella         ###   ########.fr       */
+/*   Updated: 2020/01/19 18:37:58 by tjonella         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,8 +152,8 @@ void	itg_mult(char *local, int i);
 void	add_func(char *itg, int i);
 char	*count_itg(int bits);
 void	rounding_int_aft_flt(char *res, int i);
-void	rounding_flt_4(char *res, int i, int acc);
-void	rounding_flt_3(char *res, char *flt, int i, int j, t_printf *prnt);
+void	rounding_flt_4(char *res, int i, t_printf *prnt);
+int		rounding_flt_3(char *res, char *flt, int i, int j);
 char	*rounding_flt_2(char *itg, char *flt, t_printf *prnt);
 char	*rounding_flt(char *itg, char *flt, t_printf *prnt);
 char	*ft_flt(long double d, t_printf *prnt);

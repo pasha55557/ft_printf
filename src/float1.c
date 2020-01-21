@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   float1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tjonella <tjonella@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rsticks <rsticks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/19 18:50:50 by tjonella          #+#    #+#             */
-/*   Updated: 2020/01/19 18:58:55 by tjonella         ###   ########.fr       */
+/*   Updated: 2020/01/21 19:23:40 by rsticks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ char	*rounding_flt(char *itg, char *flt, t_printf *prnt)
 	else
 		res = rounding_flt_2(itg, flt, prnt);
 	ft_strrev(itg);
+	ft_strdel(&flt);
 	return (res ? res : itg);
 }
 

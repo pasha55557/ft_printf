@@ -6,7 +6,7 @@
 /*   By: rsticks <rsticks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 18:42:14 by rsticks           #+#    #+#             */
-/*   Updated: 2020/01/06 17:45:55 by rsticks          ###   ########.fr       */
+/*   Updated: 2020/01/21 18:40:22 by rsticks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 
 void					form(t_printf *prnt)
 {
-	uint32_t tmp;
+	uint32_t	tmp;
+	char*		str;
 
+	str = ft_strstr(prnt->buff, "\\");
 	tmp = prnt->flags;
 	if (*prnt->format == 'd' || *prnt->format == 'i' || *prnt->format == 'D')
 		prnt->flags |= FORM_D_I;
@@ -47,7 +49,7 @@ void					form(t_printf *prnt)
 		prnt->flags |= FORM_S;
 	if (*prnt->format == 'p')
 		prnt->flags |= FORM_P;
-	if (*prnt->format == 'n')
+	if (*prnt->format == 'n' && !str)
 		prnt->flags |= FORM_N;
 	if (tmp != prnt->flags)
 		prnt->flags |= FORM_TRUE;
@@ -243,6 +245,7 @@ void		if_procent(t_printf *prnt)
 	prnt->flags |= PRO_TRUE;
 	if (!(FORM_TRUE == (prnt->flags & FORM_TRUE)) && (prnt->width != 0) && (FLAG_MINUS != (prnt->flags & FLAG_MINUS)))
 	{
+		prnt->herna = 1;
 		prnt->width--;
 		unsigned_process_width(prnt, "\0");
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   floats2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tjonella <tjonella@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rsticks <rsticks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/21 18:58:28 by tjonella          #+#    #+#             */
-/*   Updated: 2020/01/19 18:57:45 by tjonella         ###   ########.fr       */
+/*   Updated: 2020/01/21 19:14:23 by rsticks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ void	count_flt(char *flt, int exp, int bits)
 			bias_val = 0;
 		}
 	}
-	free(local);
+	ft_strdel(&local);
 }
 
 char	*print_flt(int bits)

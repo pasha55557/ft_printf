@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   float.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tjonella <tjonella@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rsticks <rsticks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/19 18:49:59 by tjonella          #+#    #+#             */
-/*   Updated: 2020/01/19 18:58:52 by tjonella         ###   ########.fr       */
+/*   Updated: 2020/01/21 19:54:40 by rsticks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,6 @@ char	*big_int(char *itg, t_printf *prnt)
 		res[i] = '0';
 		i++;
 	}
-	free(itg);
+	ft_strdel(&itg);
 	return (res);
 }

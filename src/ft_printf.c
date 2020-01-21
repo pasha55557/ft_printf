@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tjonella <tjonella@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rsticks <rsticks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 15:57:15 by rsticks           #+#    #+#             */
-/*   Updated: 2019/12/21 23:14:33 by tjonella         ###   ########.fr       */
+/*   Updated: 2020/01/21 19:11:14 by rsticks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 static void					init_prnt(t_printf *prnt)
 {
+	prnt->herna = 0;
 	prnt->width = 0;
 	prnt->accuracy = -2;
 	prnt->flags = 0;
@@ -42,6 +43,7 @@ void		parser(t_printf *prnt)
 				putchar_and_count(prnt, '%');
 				if ((prnt->width != 0) && (FLAG_MINUS == (prnt->flags & FLAG_MINUS)))
 				{
+					prnt->herna = 1;
 					prnt->width--;
 					unsigned_process_width(prnt, "\0");
 				}
@@ -73,6 +75,7 @@ void		parser(t_printf *prnt)
 
 int	ft_printf(const char *format, ...)
 {
+	int			count;
 	t_printf	*prnt;
 
 	prnt = (t_printf*)malloc(sizeof(t_printf));
@@ -86,5 +89,8 @@ int	ft_printf(const char *format, ...)
 	else
 		write(1, prnt->buff, (prnt->count % 255));
 	ft_strdel(&prnt->buff);
-	return(prnt->count);
+	count = prnt->count;
+	free(prnt);
+	prnt = NULL;
+	return(count);
 }

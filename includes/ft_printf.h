@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tjonella <tjonella@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rsticks <rsticks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 14:59:55 by rsticks           #+#    #+#             */
-/*   Updated: 2020/01/19 18:37:58 by tjonella         ###   ########.fr       */
+/*   Updated: 2020/01/21 17:43:07 by rsticks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include "../libft/libft.h"
 # include <stdarg.h>
 #include <stddef.h>
+
+#define ULLONG_MAX (__LONG_LONG_MAX__*2ULL+1ULL)
 
 # define FLAG_MINUS (1 << 0)
 # define FLAG_SPACE (1 << 1)
@@ -83,6 +85,7 @@ typedef struct		s_flags
 
 typedef	struct		s_printf
 {
+	char			herna;
 	const char		*format;
 	int				accuracy;
 	va_list			arg;

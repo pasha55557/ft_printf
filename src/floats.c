@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   floats.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tjonella <tjonella@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rsticks <rsticks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 12:04:21 by tjonella          #+#    #+#             */
-/*   Updated: 2020/01/19 18:56:12 by tjonella         ###   ########.fr       */
+/*   Updated: 2020/01/21 19:55:51 by rsticks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ char	*ft_if_negative(char *res)
 		res_fin = (char *)ft_memalloc(ft_strlen(res) + 2);
 		res_fin[0] = '-';
 		ft_strcat(res_fin, res);
-		free(res);
+		ft_strdel(&res);
 	}
 	return (res_fin);
 }
@@ -116,6 +116,7 @@ char	*ft_flt(long double d, t_printf *prnt)
 		flt = print_flt(64);
 		itg = (char *)ft_memalloc(2);
 		itg[0] = '0';
+		//ft_strdel(&flt);
 	}
 	else
 	{
@@ -124,5 +125,6 @@ char	*ft_flt(long double d, t_printf *prnt)
 	}
 	res = rounding_flt(itg, flt, prnt);
 	res = ft_if_negative(res);
+	ft_strdel(&itg);
 	return (res);
 }

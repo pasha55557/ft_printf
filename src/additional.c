@@ -6,7 +6,7 @@
 /*   By: rsticks <rsticks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 15:18:06 by rsticks           #+#    #+#             */
-/*   Updated: 2020/01/06 17:02:35 by rsticks          ###   ########.fr       */
+/*   Updated: 2020/01/21 19:09:26 by rsticks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ char				*ft_dec_to(unsigned long long int d, int sys, t_printf *prnt)
 		j++;
 	}
 	s[j] = '\0';
-	free(c);
+	ft_strdel(&c);
 //	printf("in dec_to %s\n", s);
 	return (s);
 }
@@ -196,6 +196,7 @@ void		process_width(t_printf *prnt, char *c)
 			prnt->width--;
 		}
 	}
+	ft_strdel(&ptr);
 }
 
 void		unsigned_process_width(t_printf *prnt, char *c)
@@ -294,4 +295,6 @@ void		unsigned_process_width(t_printf *prnt, char *c)
 			prnt->width--;
 		}
 	}
+	if (prnt->herna == 0)
+		ft_strdel(&ptr);
 }

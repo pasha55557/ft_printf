@@ -6,7 +6,7 @@
 /*   By: rsticks <rsticks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/11 15:38:44 by rsticks           #+#    #+#             */
-/*   Updated: 2020/01/06 17:03:03 by rsticks          ###   ########.fr       */
+/*   Updated: 2020/01/21 19:43:54 by rsticks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 static void		char_process_width(t_printf *prnt, char *c)
 {
 	int			count;
+	char		*ptr;
 
+	ptr = c;
 	if (FLAG_NULL == (prnt->flags & FLAG_NULL) && (prnt->accuracy >= 0))
 		prnt->flags -= FLAG_NULL;
 	count = ft_strlen(c);
@@ -44,7 +46,9 @@ static void		char_process_width(t_printf *prnt, char *c)
 		}
 	}
 	if (*c == (int)NULL && (FORM_C == (prnt->flags & FORM_C)))
+	{
 		putchar_and_count(prnt, (char)NULL);
+	}
 	while (*c != '\0' && prnt->accuracy != 0)
 	{
 		putchar_and_count(prnt, *c);
@@ -60,26 +64,32 @@ static void		char_process_width(t_printf *prnt, char *c)
 			prnt->width--;
 		}
 	}
+	//printf(">>>%s [%d]<<<\n", ptr, ft_strlen(ptr));
+	if (prnt->herna != 1)
+		ft_strdel(&ptr);
 }
 
 void			ft_char(t_printf *prnt)
 {
-	char		*c;
+	char		c;
 
-	c = malloc(sizeof(char));
-	*c = (char)va_arg(prnt->arg, int);
+	//c = malloc(sizeof(char));
+	c = (char)va_arg(prnt->arg, int);
+	prnt->herna = 1;
 		//putchar_and_count(prnt , 256);
-		char_process_width(prnt, c);
+		char_process_width(prnt, &c);
 }
 
 void			ft_str(t_printf *prnt)
 {
 	char		*c;
-
 //c = va_arg(prnt->arg, ptrdiff_t);
-
+	prnt->herna = 0;
 	if (!(c = va_arg(prnt->arg, char*)))
+	{
 		c = ft_strdup("(null)");
+		prnt->herna = 1;
+	}
 		char_process_width(prnt, c);
 		//putstr_and_count(prnt, "(null)");
 }

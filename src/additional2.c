@@ -6,7 +6,7 @@
 /*   By: rsticks <rsticks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/06 16:15:08 by rsticks           #+#    #+#             */
-/*   Updated: 2020/01/06 18:59:03 by rsticks          ###   ########.fr       */
+/*   Updated: 2020/01/21 19:08:42 by rsticks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,4 +105,5 @@ void		process_width_for_float(t_printf *prnt, char *c)
 			prnt->width--;
 		}
 	}
+	ft_strdel(&ptr);
 }

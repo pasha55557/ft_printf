@@ -6,7 +6,7 @@
 /*   By: rsticks <rsticks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/06 16:15:08 by rsticks           #+#    #+#             */
-/*   Updated: 2020/01/21 19:08:42 by rsticks          ###   ########.fr       */
+/*   Updated: 2020/01/23 18:11:22 by rsticks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,6 @@ void		process_width_for_float(t_printf *prnt, char *c)
 		acc--;
 	if ((FLAG_PLUS == (prnt->flags & FLAG_PLUS) || FLAG_SPACE == (prnt->flags & FLAG_SPACE)) && (c[0] != '-'))
 		count++;
-//	if (prnt->accuracy == 0 && *c == '0')
-//	{
-//		count--;
-//		if (prnt->width == 0)
-//			prnt->accuracy = -4;
-//		else
-//			prnt->accuracy = -3;
-//	}
 	if (prnt->accuracy >= 0)
 	{
 		prnt->accuracy -= acc;

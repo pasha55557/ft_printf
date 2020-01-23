@@ -6,7 +6,7 @@
 /*   By: rsticks <rsticks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/11 15:38:44 by rsticks           #+#    #+#             */
-/*   Updated: 2020/01/21 19:43:54 by rsticks          ###   ########.fr       */
+/*   Updated: 2020/01/23 14:02:28 by rsticks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,26 +64,25 @@ static void		char_process_width(t_printf *prnt, char *c)
 			prnt->width--;
 		}
 	}
-	//printf(">>>%s [%d]<<<\n", ptr, ft_strlen(ptr));
-	if (prnt->herna != 1)
-		ft_strdel(&ptr);
+//	if (prnt->herna != 1)
+//		free(ptr);
+		//ft_strdel(&ptr);
 }
 
 void			ft_char(t_printf *prnt)
 {
-	char		c;
+	char		c[2];
 
-	//c = malloc(sizeof(char));
-	c = (char)va_arg(prnt->arg, int);
+	c[0] = (char)va_arg(prnt->arg, int);
+	c[1] = '\0';
 	prnt->herna = 1;
-		//putchar_and_count(prnt , 256);
-		char_process_width(prnt, &c);
+	char_process_width(prnt, c);
 }
 
 void			ft_str(t_printf *prnt)
 {
 	char		*c;
-//c = va_arg(prnt->arg, ptrdiff_t);
+
 	prnt->herna = 0;
 	if (!(c = va_arg(prnt->arg, char*)))
 	{
@@ -91,6 +90,4 @@ void			ft_str(t_printf *prnt)
 		prnt->herna = 1;
 	}
 		char_process_width(prnt, c);
-		//putstr_and_count(prnt, "(null)");
 }
-

@@ -31,7 +31,7 @@ OBJECTS_PATH = ./objs/
 OBJECTS_FILES = $(SRCS_FILES:.c=.o)
 OBJECTS = $(addprefix $(OBJECTS_PATH), $(OBJECTS_FILES))
 
-COMPILE = gcc -Wall -Wextra
+COMPILE = gcc -Wall -Wextra -Werror
 
 INCLUDES = -I./includes -I./libs/libft
 HEADERS_PATH = ./includes/
@@ -66,7 +66,9 @@ clean:
 	@rm -f $(OBJECTS)
 	@rm -rf $(LIB_OBJECTS_PATH)
 	@rm -rf $(LIB_OBJECTS)
+	@echo "\033[A\033[K\033[A"
 	@$(MAKE) fclean -C $(LIB_SRCS_PATH)
+	@echo "\033[A\033[K\033[A"
 	@echo "\033[A\033[K\033[A"
 	@echo "$(COLOR_SUCCESS)OK$(COLOR_RESET)"
 

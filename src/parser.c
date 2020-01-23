@@ -6,7 +6,7 @@
 /*   By: rsticks <rsticks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 18:42:14 by rsticks           #+#    #+#             */
-/*   Updated: 2020/01/21 18:40:22 by rsticks          ###   ########.fr       */
+/*   Updated: 2020/01/23 18:29:11 by rsticks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,23 +28,23 @@ void					form(t_printf *prnt)
 	if (*prnt->format == 'X')
 		prnt->flags |= FORM_X;
 	if (*prnt->format == 'x')
-		prnt->flags |= FORM_x;
+		prnt->flags |= FORM_XX;
 	if (*prnt->format == 'F' || *prnt->format == 'f')
 		prnt->flags |= FORM_F;
 	if (*prnt->format == 'E')
 		prnt->flags |= FORM_E;
 	if (*prnt->format == 'e')
-		prnt->flags |= FORM_e;
+		prnt->flags |= FORM_EE;
 	if (*prnt->format == 'g' || *prnt->format == 'G')
 		prnt->flags |= FORM_G;
 	if (*prnt->format == 'a')
-		prnt->flags |= FORM_a;
+		prnt->flags |= FORM_AA;
 	if (*prnt->format == 'A')
 		prnt->flags |= FORM_A;
 	if (*prnt->format == 'c')
 		prnt->flags |= FORM_C;
 	if (*prnt->format == 's')
-		prnt->flags |= FORM_s;
+		prnt->flags |= FORM_SS;
 	if (*prnt->format == 'S')
 		prnt->flags |= FORM_S;
 	if (*prnt->format == 'p')

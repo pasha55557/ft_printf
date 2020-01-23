@@ -6,7 +6,7 @@
 /*   By: rsticks <rsticks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/11 15:38:44 by rsticks           #+#    #+#             */
-/*   Updated: 2020/01/23 14:02:28 by rsticks          ###   ########.fr       */
+/*   Updated: 2020/01/23 18:59:22 by rsticks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,8 @@ static void		char_process_width(t_printf *prnt, char *c)
 			prnt->width--;
 		}
 	}
-//	if (prnt->herna != 1)
-//		free(ptr);
-		//ft_strdel(&ptr);
+	if (prnt->herna == 1)
+		free(ptr);
 }
 
 void			ft_char(t_printf *prnt)

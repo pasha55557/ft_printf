@@ -6,7 +6,7 @@
 /*   By: rsticks <rsticks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 15:18:06 by rsticks           #+#    #+#             */
-/*   Updated: 2020/01/21 19:09:26 by rsticks          ###   ########.fr       */
+/*   Updated: 2020/01/23 18:26:36 by rsticks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -232,7 +232,7 @@ void		unsigned_process_width(t_printf *prnt, char *c)
 	{
 		if ((!(FORM_O == (prnt->flags & FORM_O) && (c[0] == '0'))) || (prnt->accuracy == -4))
 			count++;
-		if (FORM_x == (prnt->flags & FORM_x) || (FORM_P == (prnt->flags & FORM_P)))
+		if (FORM_XX == (prnt->flags & FORM_XX) || (FORM_P == (prnt->flags & FORM_P)))
 			count++;
 		if (FORM_X == (prnt->flags & FORM_X))
 			count++;
@@ -252,7 +252,7 @@ void		unsigned_process_width(t_printf *prnt, char *c)
 	{
 		if ((!(FORM_O == (prnt->flags & FORM_O) && (c[0] == '0'))) || (prnt->accuracy == -4))
 			putchar_and_count(prnt, '0');
-		if (FORM_x == (prnt->flags & FORM_x) || (FORM_P == (prnt->flags & FORM_P)))
+		if (FORM_XX == (prnt->flags & FORM_XX) || (FORM_P == (prnt->flags & FORM_P)))
 			putchar_and_count(prnt, 'x');
 		if (FORM_X == (prnt->flags & FORM_X))
 			putchar_and_count(prnt, 'X');

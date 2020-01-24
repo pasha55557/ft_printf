@@ -6,7 +6,7 @@
 /*   By: rsticks <rsticks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 12:04:21 by tjonella          #+#    #+#             */
-/*   Updated: 2020/01/21 19:55:51 by rsticks          ###   ########.fr       */
+/*   Updated: 2020/01/24 17:40:47 by rsticks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,6 @@ char	*ft_flt(long double d, t_printf *prnt)
 		flt = print_flt(64);
 		itg = (char *)ft_memalloc(2);
 		itg[0] = '0';
-		//ft_strdel(&flt);
 	}
 	else
 	{

@@ -34,7 +34,7 @@ OBJECTS_PATH = ./objs/
 OBJECTS_FILES = $(SRCS_FILES:.c=.o)
 OBJECTS = $(addprefix $(OBJECTS_PATH), $(OBJECTS_FILES))
 
-COMPILE = gcc -Wall -Wextra -Werror
+COMPILE = gcc -Wall -Wextra
 
 INCLUDES = -I./includes -I./libs/libft
 HEADERS_PATH = ./includes/

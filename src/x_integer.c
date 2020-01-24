@@ -6,7 +6,7 @@
 /*   By: rsticks <rsticks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 17:57:23 by rsticks           #+#    #+#             */
-/*   Updated: 2019/12/16 18:54:34 by rsticks          ###   ########.fr       */
+/*   Updated: 2020/01/24 13:33:31 by rsticks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,4 @@ void						ft_ptr_n(t_printf *prnt)
 
 	ln = va_arg(prnt->arg, int*);
 	*ln = prnt->count;
-	//c = ft_dec_to(ln, 16, prnt);
-	//unsigned_process_width(prnt, c);
 }

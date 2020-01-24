@@ -6,11 +6,34 @@
 /*   By: rsticks <rsticks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/11 15:38:44 by rsticks           #+#    #+#             */
-/*   Updated: 2020/01/23 18:59:22 by rsticks          ###   ########.fr       */
+/*   Updated: 2020/01/24 15:15:06 by rsticks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
+
+// static void		char_process_width(t_printf *prnt, int count)
+// {
+// 	if (FLAG_MINUS != (prnt->flags & FLAG_MINUS) && (FLAG_NULL != (prnt->flags & FLAG_NULL)))
+// 	{
+// 		prnt->width -= count;
+// 		while (prnt->width > 0)
+// 		{
+// 			putchar_and_count(prnt, ' ');
+// 			prnt->width--;
+// 		}
+// 	}
+	
+// 	if (FLAG_NULL == (prnt->flags & FLAG_NULL) && FLAG_MINUS != (prnt->flags & FLAG_MINUS))
+// 	{
+// 		prnt->width -= count;
+// 		while (prnt->width > 0)
+// 		{
+// 			putchar_and_count(prnt, '0');
+// 			prnt->width--;
+// 		}
+// 	}
+// }
 
 static void		char_process_width(t_printf *prnt, char *c)
 {
@@ -74,7 +97,6 @@ void			ft_char(t_printf *prnt)
 
 	c[0] = (char)va_arg(prnt->arg, int);
 	c[1] = '\0';
-	prnt->herna = 1;
 	char_process_width(prnt, c);
 }
 

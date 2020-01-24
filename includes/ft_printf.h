@@ -6,7 +6,7 @@
 /*   By: rsticks <rsticks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 14:59:55 by rsticks           #+#    #+#             */
-/*   Updated: 2020/01/23 18:48:19 by rsticks          ###   ########.fr       */
+/*   Updated: 2020/01/24 15:55:50 by rsticks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,15 @@
 # define LDBL_NAN 0x7FFF0000000001000000L
 # define LDBL_PZERO 0x00000000000000000000L
 # define LDBL_NZERO 0x80000000000000000000L
+
+typedef struct				s_dec_to
+{
+	char					*c;
+	char					*s;
+	int						i;
+	int						otc;
+	int						j;
+}							t_dec_to;
 
 typedef struct				s_int
 {

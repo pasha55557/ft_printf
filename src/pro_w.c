@@ -6,7 +6,7 @@
 /*   By: rsticks <rsticks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/24 16:37:34 by rsticks           #+#    #+#             */
-/*   Updated: 2020/01/24 17:04:54 by rsticks          ###   ########.fr       */
+/*   Updated: 2020/01/24 17:06:45 by rsticks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,6 @@ void						process_width(t_printf *prnt, char *c)
 	ptr = c;
 	count = 0;
 	count = ft_strlen(c);
-	
 	if (FLAG_NULL == (prnt->flags & FLAG_NULL) && (prnt->accuracy >= 0))
 		prnt->flags -= FLAG_NULL;
 	process_width1(prnt, c, &count);

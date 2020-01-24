@@ -6,7 +6,7 @@
 /*   By: rsticks <rsticks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/01 15:56:32 by rsticks           #+#    #+#             */
-/*   Updated: 2020/01/23 18:29:11 by rsticks          ###   ########.fr       */
+/*   Updated: 2020/01/24 17:08:14 by rsticks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ void		transform(t_printf *prnt)
 		u_intger(prnt);
 	else if (FORM_O == (prnt->flags & FORM_O))
 		o_intger(prnt);
-	else if (FORM_X == (prnt->flags & FORM_X) || FORM_XX == (prnt->flags & FORM_XX))
+	else if (FORM_X == (prnt->flags & FORM_X) ||
+	FORM_XX == (prnt->flags & FORM_XX))
 		x_intger(prnt);
 	else if (FORM_C == (prnt->flags & FORM_C))
 		ft_char(prnt);

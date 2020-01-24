@@ -6,7 +6,7 @@
 /*   By: rsticks <rsticks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 15:18:06 by rsticks           #+#    #+#             */
-/*   Updated: 2020/01/24 16:38:01 by rsticks          ###   ########.fr       */
+/*   Updated: 2020/01/24 17:18:48 by rsticks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void				putstr_and_count(t_printf *prnt, char *c)
 {
 	if (prnt->count % 255 == 0 && prnt->count != 0)
 		write(1, prnt->buff, 255);
-	while(*c != '\0')
+	while (*c != '\0')
 	{
 		prnt->buff[prnt->count % 255] = *c;
 		prnt->count++;
@@ -58,7 +58,8 @@ static void			ft_dec_to2(t_dec_to *dec, unsigned long long int d, int sys)
 	}
 }
 
-char				*ft_dec_to(unsigned long long int d, int sys, t_printf *prnt)
+char				*ft_dec_to(unsigned long long int d,
+					int sys, t_printf *prnt)
 {
 	t_dec_to		dec;
 

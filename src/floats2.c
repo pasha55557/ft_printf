@@ -6,7 +6,7 @@
 /*   By: rsticks <rsticks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/21 18:58:28 by tjonella          #+#    #+#             */
-/*   Updated: 2020/01/21 19:14:23 by rsticks          ###   ########.fr       */
+/*   Updated: 2020/01/25 19:58:37 by rsticks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ void	count_flt(char *flt, int exp, int bits)
 			bias_val = 0;
 		}
 	}
-	ft_strdel(&local);
+	//free(local);
 }
 
 char	*print_flt(int bits)

@@ -6,7 +6,7 @@
 /*   By: rsticks <rsticks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/29 12:04:21 by tjonella          #+#    #+#             */
-/*   Updated: 2020/01/24 17:40:47 by rsticks          ###   ########.fr       */
+/*   Updated: 2020/01/25 19:57:55 by rsticks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ char	*ft_if_negative(char *res)
 		res_fin = (char *)ft_memalloc(ft_strlen(res) + 2);
 		res_fin[0] = '-';
 		ft_strcat(res_fin, res);
-		ft_strdel(&res);
+		//free(res);
 	}
 	return (res_fin);
 }
@@ -124,6 +124,6 @@ char	*ft_flt(long double d, t_printf *prnt)
 	}
 	res = rounding_flt(itg, flt, prnt);
 	res = ft_if_negative(res);
-	ft_strdel(&itg);
+	//free(flt ? flt : NULL);
 	return (res);
 }

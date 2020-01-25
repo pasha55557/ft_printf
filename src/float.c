@@ -6,7 +6,7 @@
 /*   By: rsticks <rsticks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/19 18:49:59 by tjonella          #+#    #+#             */
-/*   Updated: 2020/01/21 19:54:40 by rsticks          ###   ########.fr       */
+/*   Updated: 2020/01/25 19:55:45 by rsticks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,6 @@ char	*big_int(char *itg, t_printf *prnt)
 		res[i] = '0';
 		i++;
 	}
-	ft_strdel(&itg);
+	//free(itg);
 	return (res);
 }

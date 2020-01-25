@@ -16,7 +16,8 @@ SRCS_PATH = ./src/
 SRCS_FILES = main.c ft_printf.c parser.c integer.c transform.c \
 			additional.c u_integer.c o_integer.c x_integer.c char.c \
 			floats.c floats2.c float_main.c additional2.c float.c float1.c \
-			init.c unsigned_pro_w.c long_itoa.c pro_w.c mod_x.c
+			init.c unsigned_pro_w.c long_itoa.c pro_w.c mod_x.c parser2.c add3.c \
+			mod_u.c
 
 SRCS = $(addprefix $(SRCS_PATH), $(SRCS_FILES))
 

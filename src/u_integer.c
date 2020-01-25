@@ -6,15 +6,15 @@
 /*   By: rsticks <rsticks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 15:19:20 by rsticks           #+#    #+#             */
-/*   Updated: 2019/12/11 20:26:16 by rsticks          ###   ########.fr       */
+/*   Updated: 2020/01/25 18:59:04 by rsticks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-int		ft_udigits_count(unsigned long long int n)
+int							ft_udigits_count(unsigned long long int n)
 {
-	int i;
+	int						i;
 
 	i = 0;
 	if (n == 0)
@@ -27,10 +27,10 @@ int		ft_udigits_count(unsigned long long int n)
 	return (i);
 }
 
-char				*ft_ulong_itoa(unsigned long long int n)
+char						*ft_ulong_itoa(unsigned long long int n)
 {
-	int				i;
-	char			*s;
+	int						i;
+	char					*s;
 	unsigned long long int	nb;
 
 	nb = n;
@@ -49,43 +49,9 @@ char				*ft_ulong_itoa(unsigned long long int n)
 	return (s);
 }
 
-char				*u_modificator(t_printf *prnt)
+void						u_intger(t_printf *prnt)
 {
-	char			*c;
-	unsigned long long int	ln;
-
-	ln = 0;
-	if (MOD_L == (prnt->flags & MOD_L))
-	{
-		ln = va_arg(prnt->arg, unsigned long int);
-		c = ft_ulong_itoa(ln);
-	}
-	else if (MOD_LL == (prnt->flags & MOD_LL))
-	{
-		ln = va_arg(prnt->arg, unsigned long long int);
-		c = ft_long_itoa(ln);
-	}
-	else if (MOD_H == (prnt->flags & MOD_H))
-	{
-		ln = (unsigned short int)va_arg(prnt->arg, unsigned int);
-		c = ft_ulong_itoa(ln);
-	}
-	else if (MOD_HH == (prnt->flags & MOD_HH))
-	{
-		ln = (unsigned char)va_arg(prnt->arg, unsigned int);
-		c = ft_ulong_itoa(ln);
-	}
-	else
-	{
-		ln = va_arg(prnt->arg, unsigned int);
-		c = ft_ulong_itoa(ln);
-	}
-	return (c);
-}
-
-void		u_intger(t_printf *prnt)
-{
-	char	*c;
+	char					*c;
 
 	c = u_modificator(prnt);
 	unsigned_process_width(prnt, c);

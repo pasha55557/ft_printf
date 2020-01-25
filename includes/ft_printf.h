@@ -6,7 +6,7 @@
 /*   By: rsticks <rsticks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 14:59:55 by rsticks           #+#    #+#             */
-/*   Updated: 2020/01/24 15:55:50 by rsticks          ###   ########.fr       */
+/*   Updated: 2020/01/25 18:24:45 by rsticks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,7 @@ union						u_floats
 
 }							t_floats;
 
+int							if_procent4(t_printf *prnt);
 void						init_prnt(t_printf *prnt);
 void						process_width_for_float(t_printf *prnt, char *c);
 void						putstr_and_count(t_printf *prnt, char *c);

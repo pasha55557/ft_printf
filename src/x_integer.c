@@ -6,49 +6,15 @@
 /*   By: rsticks <rsticks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 17:57:23 by rsticks           #+#    #+#             */
-/*   Updated: 2019/12/16 18:54:34 by rsticks          ###   ########.fr       */
+/*   Updated: 2020/01/24 17:16:56 by rsticks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-char				*x_modificator(t_printf *prnt)
+void						x_intger(t_printf *prnt)
 {
-	char			*c;
-	unsigned long long int	ln;
-
-	ln = 0;
-	if (MOD_L == (prnt->flags & MOD_L))
-	{
-		ln = va_arg(prnt->arg, unsigned long int);
-		c = ft_dec_to(ln, 16, prnt);
-	}
-	else if (MOD_LL == (prnt->flags & MOD_LL))
-	{
-		ln = va_arg(prnt->arg, unsigned long long int);
-		c = ft_dec_to(ln, 16, prnt);
-	}
-	else if (MOD_H == (prnt->flags & MOD_H))
-	{
-		ln = (unsigned short int)va_arg(prnt->arg, unsigned int);
-		c = ft_dec_to(ln, 16, prnt);
-	}
-	else if (MOD_HH == (prnt->flags & MOD_HH))
-	{
-		ln = (unsigned char)va_arg(prnt->arg, unsigned int);
-		c = ft_dec_to(ln, 16, prnt);
-	}
-	else
-	{
-		ln = va_arg(prnt->arg, unsigned int);
-		c = ft_dec_to(ln, 16, prnt);
-	}
-	return (c);
-}
-
-void		x_intger(t_printf *prnt)
-{
-	char	*c;
+	char					*c;
 
 	c = x_modificator(prnt);
 	unsigned_process_width(prnt, c);
@@ -70,6 +36,4 @@ void						ft_ptr_n(t_printf *prnt)
 
 	ln = va_arg(prnt->arg, int*);
 	*ln = prnt->count;
-	//c = ft_dec_to(ln, 16, prnt);
-	//unsigned_process_width(prnt, c);
 }

@@ -3,21 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   float_main.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tjonella <tjonella@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rsticks <rsticks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/21 19:31:07 by tjonella          #+#    #+#             */
-/*   Updated: 2020/01/19 18:48:24 by tjonella         ###   ########.fr       */
+/*   Updated: 2020/01/29 19:57:36 by rsticks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_printf.h"
 
-char	*not_num(char *c, t_printf *prnt)
+char	*not_num(t_printf *prnt)
 {
+	char	*c;
+	
+	c = NULL;
 	if (t_floats.t_bits.exp == 32767 && t_floats.t_bits.sign == 0 && \
 		t_floats.t_bits.mant == 1UL << 63)
 	{
-		c = "inf";
+		c = ft_strdup("inf");
 		prnt->flags &= 7;
 		prnt->accuracy = -2;
 	}
@@ -25,13 +28,13 @@ char	*not_num(char *c, t_printf *prnt)
 	t_floats.t_bits.mant == 1UL << 63)
 	{
 		prnt->flags &= 7;
-		c = "-inf";
+		c = ft_strdup("-inf");
 		prnt->accuracy = -2;
 	}
 	else if (t_floats.t_bits.exp == 32767)
 	{
 		prnt->flags &= 1;
-		c = "nan";
+		c = ft_strdup("nan");
 		prnt->accuracy = -2;
 	}
 	return (c);
@@ -44,23 +47,19 @@ char	*modif_flt(t_printf *prnt)
 	double			ln;
 
 	ln = 0;
-	if (MOD_L == (prnt->flags & MOD_L))
-	{
-		ln = va_arg(prnt->arg, double);
-		c = ft_flt((double)ln, prnt);
-		c = not_num(c, prnt);
-	}
-	else if (MOD_LLL == (prnt->flags & MOD_LLL))
+	if (MOD_LLL == (prnt->flags & MOD_LLL))
 	{
 		lln = va_arg(prnt->arg, long double);
-		c = ft_flt((long double)lln, prnt);
-		c = not_num(c, prnt);
+		t_floats.f = lln;
+		c = not_num(prnt);
+		c = c ? c : ft_flt((long double)lln, prnt);
 	}
 	else
 	{
 		ln = va_arg(prnt->arg, double);
-		c = ft_flt((double)ln, prnt);
-		c = not_num(c, prnt);
+		t_floats.f = ln;
+		c = not_num(prnt);
+		c = c ? c : ft_flt((double)ln, prnt);
 	}
 	return (c);
 }

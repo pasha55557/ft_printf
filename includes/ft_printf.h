@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tjonella <tjonella@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rsticks <rsticks@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/29 14:59:55 by rsticks           #+#    #+#             */
-/*   Updated: 2020/01/26 15:49:15 by tjonella         ###   ########.fr       */
+/*   Updated: 2020/01/29 19:56:54 by rsticks          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,6 +171,6 @@ char						*ft_strrev(char *str);
 void						first_bias(char *flt, int bits, int exp);
 char						*ft_if_negative(char *res);
 char						*big_int(char *itg, t_printf *prnt);
-char						*not_num(char *c, t_printf *prnt);
+char						*not_num(t_printf *prnt);
 
 #endif
